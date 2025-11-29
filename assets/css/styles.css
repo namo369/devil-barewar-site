@@ -1010,3 +1010,84 @@ a.btn:focus {
     border-color: var(--latte);
     box-shadow: 0 10px 20px rgba(165, 107, 42, 0.3);
 }
+
+/* ============================
+   EXTRA MOBILE TWEAKS
+   ============================ */
+
+/* 1) Make container padding smaller on phones */
+@media (max-width: 600px) {
+    .container {
+        padding: 0.9rem;
+    }
+
+    .hero {
+        padding: 2rem 0 1.6rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* 2) Ensure cards / grids stack nicely on small screens */
+@media (max-width: 600px) {
+
+    /* any grids that should be 1‑column on mobile */
+    .posts-grid,
+    .books-grid,
+    .poems-grid,
+    .film-grid,
+    .sticky-board {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* cards that are side‑by‑side on desktop */
+    .post-card,
+    .book-card,
+    .post-card.story-card,
+    .poem-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .book-cover,
+    .post-thumb img,
+    .poem-thumb img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+/* 3) Make header easier on mobile */
+@media (max-width: 480px) {
+    .brand {
+        font-size: 1.05rem;
+    }
+
+    .site-search {
+        max-width: 60%;
+    }
+
+    .site-search input[type="search"] {
+        min-width: 0;
+        font-size: 0.85rem;
+    }
+}
+
+/* 4) Footer text smaller on very small phones */
+@media (max-width: 420px) {
+    .footer-top-strip h2 {
+        font-size: 1.5rem;
+    }
+
+    .footer-top-strip p {
+        font-size: 1rem;
+    }
+
+    .footer-copy,
+    .footer-made {
+        font-size: 0.9rem;
+    }
+}
