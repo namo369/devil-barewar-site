@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Screenplays — Devil Barewar</title>
+    <meta name="description" content="Screenplays by Devil Barewar — read full scripts." />
+
+    <!-- site CSS (shared) -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        /* Page-specific overrides */
+        :root {
+            --card-gap: 28px;
+            --thumb-width: 320px;
+            /* adjust to match your thumbnail size */
+            --thumb-height: 180px;
+            --card-padding: 18px;
+        }
+
+        .screenplay-stage {
+            max-width: 1200px;
+            margin: 28px auto;
+            padding: 18px;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 1.5rem 0 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .page-hero h1 {
+            margin: 0;
+            font-family: Georgia, serif;
+            color: var(--espresso);
+            font-size: 28px;
+        }
+
+        .page-hero p {
+            margin: .45rem 0 0;
+            color: var(--muted);
+        }
+
+        /* grid: 2 columns on desktop, 1 column on small screens */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--card-gap);
+            align-items: stretch;
+        }
+
+        .screenplay-card {
+            background: var(--surface);
+            padding: var(--card-padding);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 18px;
+            min-height: 220px;
+            align-items: flex-start;
+        }
+
+        .screenplay-thumb {
+            width: var(--thumb-width);
+            height: var(--thumb-height);
+            flex: 0 0 var(--thumb-width);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f3f1;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenplay-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .screenplay-meta {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .screenplay-meta h3 {
+            margin: 0;
+            font-family: Georgia, serif;
+            color: var(--latte);
+            font-size: 20px;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+        }
+
+        .screenplay-meta .sub {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .screenplay-meta p.desc {
+            margin: 0;
+            color: var(--chocolate);
+            line-height: 1.45;
+        }
+
+        .screenplay-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .missing-note {
+            font-size: 13px;
+            color: #9b3b3b;
+            background: #fff6f6;
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: inline-block;
+        }
+
+        @media (max-width:920px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenplay-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .screenplay-thumb {
+                width: 100%;
+                height: 200px;
+                flex: 0 0 auto;
+            }
+        }
+
+        /* small visual tweak to match other pages */
+        .back-row {
+            margin-top: 18px;
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--latte);
+            font-weight: 700;
+            padding: .4rem .6rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== header (same style as other pages) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="story.html">Stories</a>
+                <a href="poems.html">Poems</a>
+                <a href="about.html">About</a>
+            </nav>
+
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== hero (consistent with other pages) ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Devil Barewar — Screenplays</h1>
+            <p class="muted">Click a screenplay (thumbnail or Open) to read the full script.</p>
+        </div>
+    </section>
+
+    <!-- ===== main grid ===== -->
+    <main class="screenplay-stage">
+
+        <section class="cards-grid container" id="cardsGrid">
+
+            <!-- CARD: AAKHRI KULHAD -->
+            <article class="screenplay-card" id="card-aakhri">
+                <div class="screenplay-thumb">
+                    <a href="screenplay/aakhri-kulhad.html" title="Open Aakhri Kulhad">
+                        <img alt="Aakhri Kulhad" src="screenplay/images/Aakhri_kulhad.jpg"
+                            data-rel="screenplay/images/Aakhri_kulhad.jpg">
+                    </a>
+                </div>
+
+                <div class="screenplay-meta">
+                    <h3>AAKHRI KULHAD</h3>
+                    <div class="sub">Story: Devil Barewar · Directed by: Naman Barewar &amp; Hrithik Kolli</div>
+                    <p class="desc">A short film about two kulhads and an unexpected twist.</p>
+
+                    <div class="screenplay-actions">
+                        <a class="btn" href="screenplay/aakhri-kulhad.html">Open</a>
+                        <!-- optional ghost button removed per your request -->
+                    </div>
+
+                    <div class="status" aria-live="polite"></div>
+                </div>
+            </article>
+
+            <!-- CARD: GUMSHUDA KULHAD -->
+            <article class="screenplay-card" id="card-gumshuda">
+                <div class="screenplay-thumb">
+                    <a href="screenplay/gumshuda-kulhad.html" title="Open Gumshuda Kulhad">
+                        <img alt="Gumshuda Kulhad" src="screenplay/images/gumshuda_kulhad.jpg"
+                            data-rel="screenplay/images/gumshuda_kulhad.jpg">
+                    </a>
+                </div>
+
+                <div class="screenplay-meta">
+                    <h3>GUMSHUDA KULHAD</h3>
+                    <div class="sub">Story: Devil Barewar · Directed by: Naman Barewar &amp; Hrithik Kolli</div>
+                    <p class="desc">A missing book, a kulhad, and an unexpected mystery.</p>
+
+                    <div class="screenplay-actions">
+                        <a class="btn" href="screenplay/gumshuda-kulhad.html">Open</a>
+                    </div>
+
+                    <div class="status" aria-live="polite"></div>
+                </div>
+            </article>
+
+            <!-- CARD: KULHAD BREAK -->
+            <article class="screenplay-card" id="card-break">
+                <div class="screenplay-thumb">
+                    <a href="screenplay/kulhad-break.html" title="Open Kulhad Break">
+                        <img alt="Kulhad Break" src="screenplay/images/kulhad_break.jpg"
+                            data-rel="screenplay/images/kulhad_break.jpg">
+                    </a>
+                </div>
+
+                <div class="screenplay-meta">
+                    <h3>KULHAD BREAK</h3>
+                    <div class="sub">Story: Devil Barewar · Directed by: Naman Barewar &amp; Hrithik Kolli</div>
+                    <p class="desc">Breakup, chai, and a moment that changes everything.</p>
+
+                    <div class="screenplay-actions">
+                        <a class="btn" href="screenplay/kulhad-break.html">Open</a>
+                    </div>
+
+                    <div class="status" aria-live="polite"></div>
+                </div>
+            </article>
+
+            <!-- CARD: KULHAD-SI MULAQAAT -->
+            <article class="screenplay-card" id="card-mulaqaat">
+                <div class="screenplay-thumb">
+                    <a href="screenplay/kulhad-si-mulaqaat.html" title="Open Kulhad-si Mulaqaat">
+                        <img alt="Kulhad-si Mulaqaat" src="screenplay/images/kulhad-si_mulaquaat.jpg"
+                            data-rel="screenplay/images/kulhad-si_mulaquaat.jpg">
+                    </a>
+                </div>
+
+                <div class="screenplay-meta">
+                    <h3>KULHAD-SI MULAQAAT</h3>
+                    <div class="sub">Story: Devil Barewar · Directed by: Naman Barewar &amp; Hrithik Kolli</div>
+                    <p class="desc">A lovely accidental meeting over a shared kulhad.</p>
+
+                    <div class="screenplay-actions">
+                        <a class="btn" href="screenplay/kulhad-si-mulaqaat.html">Open</a>
+                    </div>
+
+                    <div class="status" aria-live="polite"></div>
+                </div>
+            </article>
+
+        </section>
+
+        <div class="back-row container">
+            <a class="back" href="index.html">← Back to Home</a>
+        </div>
+    </main>
+
+    <!-- ===== footer injection (robust like other pages) ===== -->
+    <div id="footer-placeholder"></div>
+    <script>
+        // Try the local components path first (assets/components/footer.html),
+        // then fallback to footer.html at project root. If both fail, insert a minimal fallback.
+        (function () {
+            function insertHtml(html) {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            }
+
+            fetch("assets/components/footer.html")
+                .then(res => {
+                    if (!res.ok) return fetch("footer.html");
+                    return res;
+                })
+                .then(res => res.text())
+                .then(insertHtml)
+                .catch(() => {
+                    // fallback minimal footer if both are missing
+                    insertHtml('<footer class="site-footer"><div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-copy">© Devil Barewar. All Rights Reserved.</p><p class="footer-made">Made with ❤️ by Devil Barewar</p></div></div></footer>');
+                });
+        })();
+    </script>
+
+    <!-- site JS (main behaviour) -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ensure any footer link script (if present) loads as the last script -->
+    <script>
+        (function () {
+            // attempt to load footer-links.js from assets and fallback to root path
+            var s = document.createElement('script');
+            s.src = 'assets/js/footer-links.js';
+            s.onload = function () { };
+            s.onerror = function () {
+                var s2 = document.createElement('script');
+                s2.src = 'assets/js/footer-links.js';
+                document.body.appendChild(s2);
+            };
+            document.body.appendChild(s);
+        })();
+    </script>
+
+    <!-- Small helper: graceful placeholder if an image fails to load -->
+    <script>
+        (function () {
+            // placeholder SVG (embedded) for missing thumbs
+            function placeholderDataUri(w = 320, h = 180, text = 'No thumbnail') {
+                return 'data:image/svg+xml;utf8,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '"><rect width="100%" height="100%" fill="#faf7f5"/><text x="50%" y="50%" fill="#9aa" font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="middle" dominant-baseline="middle">' + text + '</text></svg>'
+                );
+            }
+
+            document.querySelectorAll('.screenplay-thumb img').forEach(img => {
+                // if image already broken, browser may still fire error. Attach handler first.
+                img.addEventListener('error', function () {
+                    // replace with placeholder and show note next to card
+                    this.src = placeholderDataUri();
+                    const card = this.closest('.screenplay-card');
+                    if (card) {
+                        const status = card.querySelector('.status');
+                        if (status) status.innerHTML = '<span class="missing-note">Thumbnail missing — place file in /screenplay/images/ and reload.</span>';
+                    }
+                });
+
+                // for robust testing: check if image exists by creating tester
+                const rel = img.getAttribute('data-rel') || img.src;
+                if (rel) {
+                    const t = new Image();
+                    t.onload = function () {
+                        // all good: ensure the <img> uses the same src (in case relative)
+                        img.src = rel;
+                    };
+                    t.onerror = function () {
+                        // if page loaded via file://, browsers may allow direct disk paths but we avoid relying on that;
+                        // simply trigger img.onerror by setting src to non-existent to show placeholder
+                        img.dispatchEvent(new Event('error'));
+                    };
+                    t.src = rel;
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

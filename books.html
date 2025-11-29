@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Books — Devil Barewar</title>
+    <meta name="description" content="Books by Devil Barewar — summaries, buy links and excerpts." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devil Barewar",
+    "url": "/books.html"
+  }
+  </script>
+</head>
+
+<body>
+
+    <!-- Header (same as index) -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/" aria-label="Devil Barewar - Home">Devil Barewar</a>
+
+            <div class="right-controls" role="navigation" aria-label="Main navigation">
+                <form id="site-search" class="site-search" role="search" action="/search.html" method="get"
+                    aria-label="Search site">
+                    <label for="q" class="visually-hidden">Search</label>
+                    <input id="q" name="q" type="search" placeholder="Search essays, books..." aria-label="Search" />
+                    <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+                </form>
+
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="/about.html">About</a>
+                    <a href="/books.html" aria-current="page">Books</a>
+                    <a href="/contact.html">Contact</a>
+                </nav>
+
+                <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content: books catalog -->
+    <main id="top">
+        <section class="container books" style="padding:2rem 0;">
+            <h1>Books by Devil Barewar</h1>
+            <p class="lead muted">A selection of novels, essays and collections. Click each item for more details,
+                excerpts and buy links.</p>
+
+            <div style="max-width:420px;margin:0 auto;">
+                <!-- Book 1 -->
+                <article class="book card">
+                    <img src="assets/images/book_cover.jpg" alt="Book Title One cover"
+                        style="width:100%;height:auto;max-height:380px;object-fit:contain;border-radius:6px;background:#f5f5f5;margin-bottom:.6rem">
+                    <h3>कुछ अनसुने लिफ़ाफ़े</h3>
+                    <p class="muted small">Year • Publisher</p>
+                    <p class="excerpt">इश्क़ के कुछ ऐसे लिफ़ाफ़े, जो कभी सुने नहीं गए। एक सफ़र जो इश्क़ और रुहानियत से वाकिफ़
+                        है।</p>
+                    <p style="margin-top:.6rem">
+                        <a class="btn">Coming Soon</a>
+                    </p>
+                </article>
+
+                <!-- Book 2 
+                <article class="book card">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.ZsARUC_-hsCH7m9XWBw3-gHaLH?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Book Title Two cover"
+                        style="width:100%;height:280px;object-fit:cover;border-radius:6px;margin-bottom:.6rem">
+                    <h3>Book Title Two</h3>
+                    <p class="muted small">Year • Publisher</p>
+                    <p class="excerpt">Short blurb for Book Title Two — a glimpse into the subject matter and voice.</p>
+                    <p style="margin-top:.6rem">
+                        <a class="btn" href="/books/book-title-two.html">Details</a>
+                        <a class="btn btn-ghost" href="#">Buy</a>
+                    </p>
+                </article>
+
+                 Book 3 (placeholder)
+                <article class="book card">
+                    <div
+                        style="width:100%;height:380px;border-radius:6px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#999;margin-bottom:.6rem">
+                        Cover coming soon</div>
+                    <h3>Collection of Essays</h3>
+                    <p class="muted small">Year • Publisher</p>
+                    <p class="excerpt">A collection of essays exploring memory, place and small lives — longform pieces
+                        and short reflections.</p>
+                    <p style="margin-top:.6rem">
+                        <a class="btn">Coming Soon</a>
+                    </p>
+                </article>-->
+
+                <!-- Add more book articles as needed -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to top -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">^</button>
+
+    <script src="assets/js/main.js"></script>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+
+
+</body>
+
+</html>

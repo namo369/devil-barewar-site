@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Podcast — Devil Barewar</title>
+    <meta name="description" content="Audio stories, conversations and narrated episodes by Devil Barewar." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* Page-specific styling */
+        :root {
+            --pod-accent: #2f2e41;
+            --pod-accent-2: #b07a35;
+        }
+
+        .pod-hero {
+            background: linear-gradient(180deg, #fff7f0, #f4e8de);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .pod-hero h1 {
+            margin: 0 0 .5rem;
+            color: var(--espresso);
+            font-size: 2rem;
+        }
+
+        .pod-hero p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .pod-layout {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Featured player */
+        .featured {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .feat-meta {
+            color: var(--muted);
+            margin: .45rem 0;
+        }
+
+        .feat-controls {
+            display: flex;
+            gap: .6rem;
+            align-items: center;
+        }
+
+        .feat-controls .btn {
+            padding: .6rem .9rem;
+            border-radius: 8px;
+        }
+
+        .feat-cover {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 12px 28px rgba(20, 20, 20, 0.06);
+        }
+
+        .feat-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Episodes grid */
+        .episodes-grid {
+            margin-top: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .episode {
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+        }
+
+        .episode .thumb {
+            flex: 0 0 120px;
+            width: 120px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .episode .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .episode .ep-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .episode .ep-title {
+            margin: 0;
+            color: var(--latte);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .episode .ep-meta {
+            font-size: .9rem;
+            color: var(--muted);
+        }
+
+        .episode .ep-actions {
+            margin-top: .5rem;
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+
+        .ep-btn {
+            padding: .4rem .6rem;
+            border-radius: 8px;
+            border: 0;
+            cursor: pointer;
+            background: var(--latte);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .ep-btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--espresso);
+        }
+
+        /* Sidebar subscribe / about */
+        .side-panel {
+            position: sticky;
+            top: 86px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .side-card {
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .subscribe input[type="email"] {
+            width: 100%;
+            padding: .6rem .8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: .6rem;
+        }
+
+        .subscribe button {
+            width: 100%;
+            padding: .7rem;
+            border-radius: 8px;
+            background: var(--latte);
+            color: #fff;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Transcript modal */
+        .transcript-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 220;
+            padding: 1rem;
+        }
+
+        .transcript-overlay.open {
+            display: flex;
+        }
+
+        .transcript {
+            width: 100%;
+            max-width: 900px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .transcript header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .transcript h3 {
+            margin: 0;
+            color: var(--espresso);
+        }
+
+        .transcript .close {
+            background: transparent;
+            border: 0;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width:980px) {
+            .pod-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .episode {
+                flex-direction: row;
+            }
+
+            .episode .thumb {
+                width: 120px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header reuse -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="stories.html">Stories</a>
+                <a href="poems.html">Poems</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pod-hero">
+        <div class="container">
+            <h1>Devil Barewar — Podcast</h1>
+            <p>Stories in voice: intimate conversations, narrated episodes and audio storytelling. Listen, subscribe,
+                and leave a line if an episode moved you.</p>
+        </div>
+    </section>
+
+    <!-- Main layout -->
+    <section class="pod-layout">
+
+        <div>
+            <!-- Featured player -->
+            <div class="featured" id="featured">
+                <div>
+                    <div style="display:flex; align-items:center; gap:1rem;">
+                        <div class="feat-cover" id="featCover"><img
+                                src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200"
+                                alt="Featured cover"></div>
+                        <div>
+                            <h2 id="featTitle" style="margin:0; color:var(--latte);">Episode 01 — The Hill</h2>
+                            <div class="feat-meta" id="featMeta">with Guest — April 10, 2025 · 28m</div>
+                        </div>
+                    </div>
+
+                    <p id="featShort" style="margin-top:.9rem; color:var(--muted);">A short introduction to the featured
+                        episode. A voice-driven story about a long walk, memory, and small towns.</p>
+
+                    <div class="feat-controls" style="margin-top:1rem;">
+                        <audio id="featPlayer" controls style="width:100%; max-width:540px;">
+                            <source src="" type="audio/mpeg">
+                            Your browser doesn't support the audio element.
+                        </audio>
+                        <button id="featTranscriptBtn" class="btn btn-ghost"
+                            style="margin-left:auto;">Transcript</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="display:flex; gap:.6rem; align-items:flex-start;">
+                        <div style="flex:1">
+                            <div style="font-weight:800; color:var(--espresso); margin-bottom:.6rem">Subscribe</div>
+                            <p class="muted" style="margin:0 0 .6rem;">Get new episodes in your inbox when they drop.
+                            </p>
+                            <div class="subscribe">
+                                <input id="podEmail" type="email" placeholder="you@example.com" />
+                                <button id="podSubscribe">Subscribe</button>
+                                <div id="podMsg" class="muted" style="margin-top:.6rem; display:none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episodes list -->
+            <h3 style="margin-top:1.25rem; color:var(--espresso)">Recent episodes</h3>
+            <div class="episodes-grid" id="episodes">
+                <!-- Episodes injected by script -->
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="side-panel" aria-label="Podcast sidebar">
+            <div class="side-card">
+                <h4 style="margin:0 0 .45rem;">About this podcast</h4>
+                <p class="muted" style="margin:0 0 .6rem;">Conversations and audio stories from Devil Barewar. Short
+                    episodes — textured vocals, simple production.</p>
+                <p style="margin:0;"><a class="btn btn-ghost" href="about.html">About the host</a></p>
+            </div>
+
+            <div class="side-card">
+                <h4 style="margin:0 0 .45rem;">Platforms</h4>
+                <p class="muted" style="margin:0 0 .6rem;">Find us on popular platforms — Apple Podcasts, Spotify and
+                    more.</p>
+                <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+                    <a class="btn ghost" href="#" target="_blank">Spotify</a>
+                    <a class="btn ghost" href="#" target="_blank">Apple</a>
+                    <a class="btn ghost" href="#" target="_blank">RSS</a>
+                </div>
+            </div>
+
+            <div class="side-card">
+                <h4 style="margin:0 0 .45rem;">Support</h4>
+                <p class="muted" style="margin:0 0 .6rem;">If you enjoy the podcast, consider buying a coffee or sharing
+                    an episode.</p>
+                <a class="btn" href="#">Support</a>
+            </div>
+        </aside>
+
+    </section>
+
+    <!-- Transcript modal -->
+    <div id="transcriptOverlay" class="transcript-overlay" aria-hidden="true">
+        <div class="transcript" role="dialog" aria-modal="true" aria-labelledby="transcriptTitle">
+            <header>
+                <h3 id="transcriptTitle">Transcript</h3>
+                <button class="close" id="transcriptClose" aria-label="Close transcript">✕</button>
+            </header>
+            <section id="transcriptBody" style="margin-top:.8rem; color:var(--chocolate); line-height:1.6;">
+                <!-- Transcript text injected here -->
+            </section>
+            <footer style="margin-top:.8rem; text-align:right;">
+                <button class="btn" id="transcriptOpenEpisode">Open episode page</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- footer injection -->
+    <div id="footer-placeholder"></div>
+    <script>
+        (function () {
+            // episodes fallback sample
+            const fallback = [
+                {
+                    "title": "Episode 01 — The Hill",
+                    "url": "podcasts/ep1.html",
+                    "date": "April 10, 2025",
+                    "duration": "28:14",
+                    "excerpt": "A voice-piece about memory, small towns and a long walk.",
+                    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200",
+                    "audio": "assets/audio/ep1.mp3",
+                    "transcript": "This is a sample transcript for Episode 01. The day began like any other..."
+                },
+                {
+                    "title": "Episode 02 — Night Train",
+                    "url": "podcasts/ep2.html",
+                    "date": "May 2, 2025",
+                    "duration": "33:05",
+                    "excerpt": "Late-night conversations on an overnight train.",
+                    "image": "https://images.unsplash.com/photo-1535909339361-1f0d3c0e2d6f?q=80&w=1200",
+                    "audio": "assets/audio/ep2.mp3",
+                    "transcript": "At midnight the carriage hummed, and a voice began..."
+                }
+            ];
+
+            const episodesEl = document.getElementById('episodes');
+            const featPlayer = document.getElementById('featPlayer');
+            const featTitle = document.getElementById('featTitle');
+            const featMeta = document.getElementById('featMeta');
+            const featCover = document.getElementById('featCover');
+            const featShort = document.getElementById('featShort');
+            const featTranscriptBtn = document.getElementById('featTranscriptBtn');
+
+            const transcriptOverlay = document.getElementById('transcriptOverlay');
+            const transcriptClose = document.getElementById('transcriptClose');
+            const transcriptBody = document.getElementById('transcriptBody');
+            const transcriptOpenEpisode = document.getElementById('transcriptOpenEpisode');
+
+            let currentEpisode = null;
+            let episodes = [];
+
+            // Create episode card
+            function renderEpisode(ep) {
+                const el = document.createElement('article');
+                el.className = 'episode';
+                el.innerHTML = `
+          <div class="thumb"><img src="${ep.image || ''}" alt="${(ep.title || '')}"></div>
+          <div class="ep-body">
+            <div>
+              <h4 class="ep-title"><a href="${ep.url}" style="text-decoration:none;color:inherit;">${ep.title}</a></h4>
+              <div class="ep-meta">${ep.date} · ${ep.duration || ''}</div>
+              <div class="muted" style="margin-top:.5rem">${ep.excerpt || ''}</div>
+            </div>
+            <div class="ep-actions">
+              <button class="ep-btn play">Play</button>
+              <button class="ep-btn ghost transcript">Transcript</button>
+              <a class="ep-btn ghost" href="${ep.url}">Open</a>
+            </div>
+          </div>
+        `;
+                // play handler
+                el.querySelector('.play').addEventListener('click', function () {
+                    loadFeaturedEpisode(ep);
+                    // ensure playback begins
+                    try { featPlayer.play(); } catch (e) { /* autoplay may be blocked */ }
+                });
+                // transcript handler
+                el.querySelector('.transcript').addEventListener('click', function () {
+                    openTranscript(ep);
+                });
+                return el;
+            }
+
+            // Load into featured area
+            function loadFeaturedEpisode(ep) {
+                currentEpisode = ep;
+                featTitle.textContent = ep.title || '';
+                featMeta.textContent = (ep.date || '') + ' · ' + (ep.duration || '');
+                featShort.textContent = ep.excerpt || '';
+                const imgTag = featCover.querySelector('img');
+                if (imgTag) imgTag.src = ep.image || '';
+                // set audio source
+                if (ep.audio) {
+                    // prefer updating <source> then load
+                    const src = featPlayer.querySelector('source');
+                    if (src) {
+                        src.src = ep.audio;
+                        featPlayer.load();
+                    } else {
+                        featPlayer.src = ep.audio;
+                    }
+                }
+                // set transcript button data
+                featTranscriptBtn.onclick = () => openTranscript(ep);
+            }
+
+            function openTranscript(ep) {
+                transcriptOverlay.classList.add('open');
+                transcriptOverlay.setAttribute('aria-hidden', 'false');
+                transcriptBody.innerHTML = '<p style="color:var(--muted)">Loading transcript…</p>';
+                transcriptOpenEpisode.onclick = () => { window.location.href = ep.url || '#'; };
+
+                // if transcript string present use that, otherwise show fallback
+                if (ep.transcript) {
+                    transcriptBody.innerHTML = '<p style="white-space:pre-wrap;">' + escapeHtml(ep.transcript) + '</p>';
+                    return;
+                }
+                // otherwise try to fetch transcript file (optional)
+                const tUrl = (ep.transcriptUrl || '').trim();
+                if (tUrl) {
+                    fetch(tUrl).then(r => r.ok ? r.text() : '').then(txt => {
+                        transcriptBody.innerHTML = txt ? '<p style="white-space:pre-wrap;">' + escapeHtml(txt) + '</p>' : '<p class="muted">Transcript not available.</p>';
+                    }).catch(() => transcriptBody.innerHTML = '<p class="muted">Transcript not available.</p>');
+                } else {
+                    transcriptBody.innerHTML = '<p class="muted">Transcript not available for this episode.</p>';
+                }
+            }
+
+            transcriptClose.addEventListener('click', function () {
+                transcriptOverlay.classList.remove('open');
+                transcriptOverlay.setAttribute('aria-hidden', 'true');
+            });
+
+            transcriptOverlay.addEventListener('click', (e) => {
+                if (e.target === transcriptOverlay) {
+                    transcriptOverlay.classList.remove('open');
+                    transcriptOverlay.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // Escape helper for safe HTML injection
+            function escapeHtml(s) {
+                return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
+
+            // Attempt to load JSON file then fallback to sample
+            fetch('assets/data/podcasts.json', { cache: 'no-store' }).then(r => {
+                if (!r.ok) throw new Error('no file');
+                return r.json();
+            }).then(list => {
+                episodes = Array.isArray(list) ? list : fallback;
+                if (!episodes.length) episodes = fallback;
+                // render episodes and featured
+                episodes.forEach(ep => episodesEl.appendChild(renderEpisode(ep)));
+                loadFeaturedEpisode(episodes[0]);
+            }).catch(() => {
+                // fallback
+                episodes = fallback;
+                episodes.forEach(ep => episodesEl.appendChild(renderEpisode(ep)));
+                loadFeaturedEpisode(episodes[0]);
+            });
+
+            // subscribe (demo)
+            const podSubscribe = document.getElementById('podSubscribe');
+            const podMsg = document.getElementById('podMsg');
+            podSubscribe.addEventListener('click', function () {
+                const email = document.getElementById('podEmail').value.trim();
+                if (!email) {
+                    podMsg.style.display = 'block';
+                    podMsg.textContent = 'Please enter a valid email address.';
+                    return;
+                }
+                // fake subscribe
+                podMsg.style.display = 'block';
+                podMsg.textContent = 'Thanks — you are subscribed (demo).';
+                setTimeout(() => podMsg.style.display = 'none', 3500);
+                document.getElementById('podEmail').value = '';
+            });
+
+            // load small footer fragment
+            fetch("assets/components/footer.html").then(res => res.ok ? res.text() : fetch("footer.html").then(r => r.text())).then(text => {
+                document.getElementById('footer-placeholder').innerHTML = text;
+            }).catch(() => { /* ignore */ });
+
+        })();
+    </script>
+
+    <!-- keep site-wide interactivity -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+
+    <script src="assets/js/footer-links.js"></script>
+</body>
+
+</html>

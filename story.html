@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Stories — Devil Barewar</title>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        /* centered layout for stories page */
+        #stories-main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem 3rem;
+        }
+
+        /* language pills row (like poems page) */
+        .language-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: .5rem;
+            margin: 0 0 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-pill {
+            border-radius: 999px;
+            padding: .25rem 1rem;
+            border: 1px solid rgba(59, 32, 17, 0.16);
+            background: #fff;
+            color: var(--espresso);
+            font-size: .9rem;
+            cursor: pointer;
+            transition: background .18s ease, color .18s ease, box-shadow .18s ease, transform .1s ease;
+        }
+
+        .lang-pill:hover {
+            background: #fff4e3;
+            box-shadow: 0 6px 14px rgba(59, 32, 17, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .lang-pill.is-active {
+            background: var(--latte);
+            color: #fff;
+            border-color: var(--latte);
+            box-shadow: 0 10px 22px rgba(165, 107, 42, 0.35);
+        }
+
+        /* story cards already look good, just slightly rounder */
+        .post-card.story-card {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 18px;
+            align-items: stretch;
+            margin-top: 1.4rem;
+            border-radius: 18px;
+        }
+
+        .story-thumb-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+        }
+
+        .story-thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            max-height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 720px) {
+            .post-card.story-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body id="stories-page">
+
+    <!-- header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="story.html" aria-current="page">Stories</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- hero band -->
+    <section class="stories-hero" style="background:#F8CBB3;padding:2.2rem 0;">
+        <div class="container" style="text-align:center;">
+            <h1 style="margin:0; font-size:28px; color:var(--chocolate); font-weight:700;">
+                Thousands of stories. Millions impacted.
+            </h1>
+            <p style="margin: .6rem 0 0; color:var(--chocolate); opacity:0.9;">
+                Help us in building the most helpful story listening experience.
+            </p>
+        </div>
+    </section>
+
+    <!-- main centered content -->
+    <main id="stories-main">
+        <!-- Stories heading -->
+        <div style="margin-bottom:1rem;">
+            <h2 style="margin:0; color:var(--espresso);">Stories</h2>
+            <p class="muted" style="margin-top:.45rem;">Latest stories, essays and long reads.</p>
+        </div>
+
+        <!-- language pills row (center page, not sidebar) -->
+        <div class="language-bar" aria-label="Story language filter">
+            <button type="button" class="lang-pill is-active" data-lang="all">All</button>
+            <button type="button" class="lang-pill" data-lang="en">English</button>
+            <button type="button" class="lang-pill" data-lang="hi">Hindi</button>
+        </div>
+
+        <!-- JS-injected posts list (if you use main.js) -->
+        <div id="posts" class="posts-grid" style="margin-bottom:1.5rem;"></div>
+
+        <!-- manual stories -->
+        <article id="ek-yaad-thi-uski" class="post-card story-card" data-lang="hi">
+            <div class="story-thumb-wrap">
+                <img src="story/images/ekyad.jpg" alt="एक याद थी उसकी thumbnail">
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:.35rem;justify-content:space-between;">
+                <div>
+                    <div class="muted small"
+                        style="letter-spacing:.14em;text-transform:uppercase;color:var(--chocolate);">
+                        Rain · Romance · First meeting
+                    </div>
+                    <div class="muted small" style="color:var(--muted);">Language · Hindi</div>
+
+                    <h3 class="post-title" style="margin:.1rem 0 .2rem;">
+                        <a href="story/ekyad.html">एक याद थी उसकी...</a>
+                    </h3>
+                    <p class="excerpt" style="margin:0;color:var(--espresso);line-height:1.6;">
+                        सुना है तेरे गली में तेरे नाम की गूंज रहती है, जैसे काशी के घट पर भक्ति की चौपाल रहती है।
+                    </p>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:.75rem;margin-top:.6rem;">
+                    <span class="muted small">5–7 min read</span>
+                    <a href="story/ekyad.html" class="btn btn-open-story"
+                        style="padding:.45rem .9rem;border-radius:999px;">
+                        Open story
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article id="barsat-e-mohabbat" class="post-card story-card" data-lang="hi">
+            <div class="story-thumb-wrap">
+                <img src="story/images/barsat.jpg" alt="बरसात‑ए‑मोहब्बत thumbnail">
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:.35rem;justify-content:space-between;">
+                <div>
+                    <div class="muted small"
+                        style="letter-spacing:.14em;text-transform:uppercase;color:var(--chocolate);">
+                        Rain · Romance
+                    </div>
+                    <div class="muted small" style="color:var(--muted);">Language · Hindi</div>
+
+                    <h3 class="post-title" style="margin:.1rem 0 .2rem;">
+                        <a href="story/barsat.html">बरसात‑ए‑मोहब्बत</a>
+                    </h3>
+                    <p class="excerpt" style="margin:0;color:var(--espresso);line-height:1.6;">
+                        वही सावन की सुबह, वही बस स्टैंड और वही पीला छाता — इस बार बरसात खुद एक कहानी बन जाती है।
+                    </p>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:.75rem;margin-top:.6rem;">
+                    <span class="muted small">5–7 min read</span>
+                    <a href="story/barsat.html" class="btn btn-open-story"
+                        style="padding:.45rem .9rem;border-radius:999px;">
+                        Open story
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article id="promise-kept" class="post-card story-card" data-lang="en">
+            <div class="story-thumb-wrap">
+                <img src="story/images/promise.jpg" alt="Promise Kept thumbnail">
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:.35rem;justify-content:space-between;">
+                <div>
+                    <div class="muted small"
+                        style="letter-spacing:.14em;text-transform:uppercase;color:var(--chocolate);">
+                        Fantasy · Love
+                    </div>
+                    <div class="muted small" style="color:var(--muted);">Language · English</div>
+
+                    <h3 class="post-title" style="margin:.1rem 0 .2rem;">
+                        <a href="story/promise.html">Promise Kept...</a>
+                    </h3>
+                    <p class="excerpt" style="margin:0;color:var(--espresso);line-height:1.6;">
+                        A wounded warrior fights for his last breath, holding on to the promise he made to the woman he
+                        loves.
+                    </p>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:.75rem;margin-top:.6rem;">
+                    <span class="muted small">7–9 min read</span>
+                    <a href="story/promise.html" class="btn btn-open-story"
+                        style="padding:.45rem .9rem;border-radius:999px;">
+                        Open story
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article id="a-pleasant-meet" class="post-card story-card" data-lang="en">
+            <div class="story-thumb-wrap">
+                <img src="story/images/meet.jpg" alt="A Pleasant Meet thumbnail">
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:.35rem;justify-content:space-between;">
+                <div>
+                    <div class="muted small"
+                        style="letter-spacing:.14em;text-transform:uppercase;color:var(--chocolate);">
+                        Romance · Monsoon · Pune
+                    </div>
+                    <div class="muted small" style="color:var(--muted);">Language · English</div>
+
+                    <h3 class="post-title" style="margin:.1rem 0 .2rem;">
+                        <a href="story/meet.html">A Pleasant Meet</a>
+                    </h3>
+                    <p class="excerpt" style="margin:0;color:var(--espresso);line-height:1.6;">
+                        A missed train on a rainy Pune night reunites Siddharth with his first love, now changed by time
+                        and destiny.
+                    </p>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:.75rem;margin-top:.6rem;">
+                    <span class="muted small">7–9 min read</span>
+                    <a href="story/meet.html" class="btn btn-open-story"
+                        style="padding:.45rem .9rem;border-radius:999px;">
+                        Open story
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+        <noscript>
+            <p class="muted" style="margin-top:1rem;">Enable JavaScript to load story list.</p>
+        </noscript>
+    </main>
+
+    <!-- pre-footer -->
+    <div class="pre-footer" style="background:#F4E3D6;padding:1.8rem 0;">
+        <div class="container" style="text-align:center;">
+            <p style="margin:0; font-weight:700; color:var(--espresso); font-size:1.1rem;">
+                Want more stories? Join our newsletter.
+            </p>
+        </div>
+    </div>
+
+    <!-- footer placeholder -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("assets/components/footer.html")
+            .then(res => {
+                if (!res.ok) return fetch("footer.html");
+                return res;
+            })
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data)
+            .catch(() => {
+                document.getElementById("footer-placeholder").innerHTML =
+                    '<footer class="site-footer"><div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-copy">© Devil Barewar. All Rights Reserved.</p><p class="footer-made">Made with ❤️ by Devil Barewar</p></div></div></footer>';
+            });
+
+        // language pill active toggle (UI only for now)
+        document.addEventListener("DOMContentLoaded", () => {
+            const pills = document.querySelectorAll(".lang-pill");
+            pills.forEach(pill => {
+                pill.addEventListener("click", () => {
+                    pills.forEach(p => p.classList.remove("is-active"));
+                    pill.classList.add("is-active");
+                    // later: use pill.dataset.lang to filter stories
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const pills = document.querySelectorAll(".lang-pill");
+            const cards = document.querySelectorAll(".story-card");
+
+            function applyFilter(lang) {
+                cards.forEach(card => {
+                    const cardLang = card.dataset.lang || "all";
+
+                    if (lang === "all") {
+                        card.style.display = "";
+                    } else {
+                        // show card if it matches selected lang or is marked 'both'
+                        if (cardLang === lang || cardLang === "both") {
+                            card.style.display = "";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    }
+                });
+            }
+
+            pills.forEach(pill => {
+                pill.addEventListener("click", () => {
+                    // toggle active pill
+                    pills.forEach(p => p.classList.remove("is-active"));
+                    pill.classList.add("is-active");
+
+                    // filter cards
+                    const lang = pill.dataset.lang || "all";
+                    applyFilter(lang);
+                });
+            });
+
+            // initial state
+            applyFilter("all");
+        });
+    </script>
+
+</body>
+
+</html>

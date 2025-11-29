@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Short Films — Devil Barewar</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #fbe9dd, #f1e1d5);
+        }
+
+
+        /* Shell */
+        .shortfilm-shell {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 2.8rem 1.4rem 3.2rem;
+        }
+
+        /* Heading */
+        .shortfilm-hero h1 {
+            margin: 0;
+            font-size: 2.1rem;
+            color: var(--espresso);
+        }
+
+        .shortfilm-hero p {
+            margin-top: .4rem;
+            color: var(--muted);
+        }
+
+        /* Grid – 3 per row */
+        .film-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.6rem;
+        }
+
+        @media (max-width: 1000px) {
+            .film-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .film-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card */
+        .film-card {
+            position: relative;
+            background: linear-gradient(145deg, #fffaf4, #f7e3cf);
+            border-radius: 18px;
+            box-shadow: 0 14px 34px rgba(59, 32, 17, 0.18);
+            padding: .9rem .9rem 1rem;
+            cursor: pointer;
+            overflow: hidden;
+            transform-origin: center;
+            transition:
+                transform .22s cubic-bezier(.19, .74, .32, 1),
+                box-shadow .22s ease,
+                background .22s ease;
+        }
+
+        .film-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at top left,
+                    rgba(255, 255, 255, .45), transparent 60%);
+            opacity: 0;
+            transition: opacity .25s ease;
+            pointer-events: none;
+        }
+
+        .film-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 24px 60px rgba(59, 32, 17, 0.26);
+            background: linear-gradient(145deg, #fff8ef, #f4d9be);
+        }
+
+        .film-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Thumbnail */
+        .film-thumb-wrap {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .film-thumb-wrap::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%;
+            /* 16:9 */
+        }
+
+        .film-thumb-wrap img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.03);
+            transition: transform .25s ease;
+        }
+
+        .film-card:hover .film-thumb-wrap img {
+            transform: scale(1.12);
+            /* stronger zoom */
+        }
+
+        /* Overlay on thumbnail */
+        .film-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: .55rem .7rem;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.1) 50%,
+                    transparent 80%);
+            color: #fff;
+        }
+
+        .film-play-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .25rem;
+            padding: .22rem .65rem;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: .8rem;
+            letter-spacing: .03em;
+        }
+
+        .film-card:hover .film-play-pill {
+            background: rgba(255, 255, 255, 0.96);
+            color: #2d1308;
+        }
+
+        .film-play-pill span.icon {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid currentColor;
+        }
+
+        .film-duration {
+            padding: .14rem .4rem;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.82);
+            font-size: .74rem;
+        }
+
+        /* Meta under thumbnail */
+        .film-meta {
+            margin-top: .6rem;
+        }
+
+        .film-title {
+            margin: 0;
+            font-size: .98rem;
+            color: var(--espresso);
+        }
+
+        .film-see-more {
+            margin-top: .18rem;
+            font-size: .82rem;
+            color: var(--latte);
+            font-weight: 650;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+        }
+
+        /* Fullscreen overlay (video left, text right) */
+        .film-overlay-full {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top,
+                    rgba(0, 0, 0, 0.9),
+                    rgba(0, 0, 0, 0.96));
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 80;
+        }
+
+        .film-overlay-inner {
+            max-width: 1180px;
+            width: 100%;
+            margin: 1.6rem;
+            background: #0a0a0a;
+            border-radius: 16px;
+            box-shadow: 0 26px 80px rgba(0, 0, 0, 0.85);
+            overflow: hidden;
+            transform: scale(0.85);
+            opacity: 0;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        /* zoom-in animation when visible */
+        .film-overlay-full.is-visible .film-overlay-inner {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .film-overlay-close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 1.3rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        /* two-column layout inside overlay */
+        .film-overlay-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) minmax(280px, 1.2fr);
+            min-height: 360px;
+        }
+
+        @media (max-width: 860px) {
+            .film-overlay-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* left: video + actions */
+        .film-overlay-video-wrap {
+            background: #000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .film-overlay-video {
+            position: relative;
+            padding-top: 56.25%;
+            background: #000;
+        }
+
+        .film-overlay-video iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* right: scrollable text */
+        .film-overlay-meta {
+            padding: .9rem 1.1rem 1.2rem;
+            color: #f7f5f3;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            max-height: 100%;
+            overflow-y: auto;
+            /* only text scrolls */
+        }
+
+        .film-overlay-meta h2 {
+            margin: 0 0 .5rem;
+            font-size: 1.18rem;
+            color: #ffe0b8;
+        }
+
+        .film-overlay-meta p {
+            margin: 0;
+            font-size: .93rem;
+            line-height: 1.7;
+            color: #d7cfc7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="story.html">Stories</a>
+                <a href="poems.html">Poems</a>
+                <a href="shortfilm.html" aria-current="page">Short Films</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="shortfilm-shell">
+        <!-- top hero band like Poems page -->
+        <section class="shortfilm-hero-band" style="
+        background: linear-gradient(to bottom, #fdf3e8, #f5e4d6);
+        padding: 2.4rem 1rem 2.7rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    ">
+            <h1 style="
+            margin: 0;
+            font-size: 2.2rem;
+            color: #5A3410;
+            font-weight: 700;
+            letter-spacing: .03em;
+        ">
+                Short films
+            </h1>
+            <p style="
+            margin: .6rem 0 0;
+            color: #7b6a5b;
+            font-size: .98rem;
+        ">
+                Short cinematic stories — watch, feel, and share.
+            </p>
+        </section>
+
+
+        <section class="film-grid">
+
+            <!-- 2) Horror Garden Part 1 -->
+            <article class="film-card" data-video-id="vVlZJmUG-ZQ"
+                data-title="Horror Garden Part 1 — Scary horror movie of a boy"
+                data-description="This is the story of a boy who died in a garden. His soul lives there after his death. Two friends make a challenge, one goes to the garden to prove himself, and the horror story begins. First part of the Horror Garden series by Seplaced Master.">
+                <div class="film-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/vVlZJmUG-ZQ/hqdefault.jpg"
+                        alt="Horror Garden Part 1 thumbnail">
+                    <div class="film-overlay">
+                        <div class="film-play-pill">
+                            <span class="icon"></span>
+                            <span>Play</span>
+                        </div>
+                        <div class="film-duration">03:48</div>
+                    </div>
+                </div>
+                <div class="film-meta">
+                    <h3 class="film-title">Horror Garden Part 1</h3>
+                    <div class="film-see-more">See more</div>
+                </div>
+            </article>
+
+            <!-- 3) Horror Garden Part 2 -->
+            <article class="film-card" data-video-id="FK2Kc5y5A20"
+                data-title="Horror Garden Part 2 — Scary horror movie of a boy"
+                data-description="Next day some boys go to the same garden at noon. This is the time when the ghost of the garden boy appears with more power. Ignoring the warning of their friend, they enter the garden and the second part of the horror story begins.">
+                <div class="film-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/FK2Kc5y5A20/hqdefault.jpg"
+                        alt="Horror Garden Part 2 thumbnail">
+                    <div class="film-overlay">
+                        <div class="film-play-pill">
+                            <span class="icon"></span>
+                            <span>Play</span>
+                        </div>
+                        <div class="film-duration">03:50</div>
+                    </div>
+                </div>
+                <div class="film-meta">
+                    <h3 class="film-title">Horror Garden Part 2</h3>
+                    <div class="film-see-more">See more</div>
+                </div>
+            </article>
+
+            <!-- 4) Horror Garden Part 3 -->
+            <article class="film-card" data-video-id="dszotuVK8r0"
+                data-title="Horror Garden Part 3 — Scary horror movie of a boy"
+                data-description="The third and final part of the Horror Garden series, where the ghost story reaches its climax and the fate of the boys and the haunted garden is revealed.">
+                <div class="film-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/dszotuVK8r0/hqdefault.jpg"
+                        alt="Horror Garden Part 3 thumbnail">
+                    <div class="film-overlay">
+                        <div class="film-play-pill">
+                            <span class="icon"></span>
+                            <span>Play</span>
+                        </div>
+                        <div class="film-duration">03:50</div>
+                    </div>
+                </div>
+                <div class="film-meta">
+                    <h3 class="film-title">Horror Garden Part 3</h3>
+                    <div class="film-see-more">See more</div>
+                </div>
+            </article>
+
+            <!-- 1) Love Shayari in Hindi -->
+            <article class="film-card" data-video-id="exTGn2VgH0U" data-title="Love Shayari in Hindi"
+                data-description="Duniya ka sabse khubsoorat toafa &quot;Mohabbat&quot; hai. Aur use izhar shayariyo se kiya jata hai. &quot;love shayari&quot; &quot;love shayari in hindi&quot;">
+                <div class="film-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/exTGn2VgH0U/hqdefault.jpg"
+                        alt="Love Shayari in Hindi thumbnail">
+                    <div class="film-overlay">
+                        <div class="film-play-pill">
+                            <span class="icon"></span>
+                            <span>Play</span>
+                        </div>
+                        <div class="film-duration">01:32</div>
+                    </div>
+                </div>
+                <div class="film-meta">
+                    <h3 class="film-title">Love Shayari in Hindi</h3>
+                    <div class="film-see-more">See more</div>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- full-screen overlay -->
+    <div class="film-overlay-full" id="filmFullOverlay">
+        <button class="film-overlay-close" id="filmCloseBtn">&times;</button>
+
+        <div class="film-overlay-inner">
+            <div class="film-overlay-layout">
+                <!-- LEFT: video only -->
+                <div class="film-overlay-video-wrap">
+                    <div class="film-overlay-video" id="filmFullPlayerWrap"></div>
+                </div>
+
+                <!-- RIGHT: scrollable text -->
+                <aside class="film-overlay-meta">
+                    <h2 id="filmFullTitle"></h2>
+                    <p id="filmFullDescription"></p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const overlay = document.getElementById("filmFullOverlay");
+        const playerWrap = document.getElementById("filmFullPlayerWrap");
+        const fullTitle = document.getElementById("filmFullTitle");
+        const fullDesc = document.getElementById("filmFullDescription");
+        const closeBtn = document.getElementById("filmCloseBtn");
+
+        document.querySelectorAll(".film-card").forEach(card => {
+            const videoId = card.dataset.videoId;
+
+            function openOverlay() {
+                fullTitle.textContent = card.dataset.title || "";
+                fullDesc.textContent = card.dataset.description || "";
+
+                playerWrap.innerHTML =
+                    `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                          title="YouTube video player"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen></iframe>`;
+
+                overlay.style.display = "flex";
+                // trigger zoom-in animation
+                void overlay.offsetWidth;
+                overlay.classList.add("is-visible");
+                document.body.style.overflow = "hidden";
+            }
+
+            // click anywhere on the card (thumb/title/see more)
+            card.addEventListener("click", openOverlay);
+        });
+
+        function closeOverlay() {
+            overlay.classList.remove("is-visible");
+            setTimeout(() => {
+                overlay.style.display = "none";
+                playerWrap.innerHTML = "";   // stop video
+                document.body.style.overflow = "";
+            }, 230);
+        }
+
+        closeBtn.addEventListener("click", closeOverlay);
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) closeOverlay();
+        });
+    </script>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+
+    <script src="assets/js/footer-links.js"></script>
+
+</body>
+
+</html>

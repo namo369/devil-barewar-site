@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Diaries — Devil Barewar</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <style>
+        :root {
+            --diary-bg: #f9f4ee;
+            --diary-card: #ffffff;
+            --diary-accent: #c38b66;
+            --diary-muted: #7b6a5b;
+        }
+
+        body {
+            background: var(--diary-bg);
+        }
+
+        .diary-hero {
+            padding: 2.2rem 0 1rem;
+            background: radial-gradient(circle at top left, #fdf2e9, #f4e4d4);
+            text-align: center;
+        }
+
+        .diary-hero h1 {
+            margin: 0;
+            font-family: Georgia, serif;
+            color: #3b2a23;
+            font-size: 34px;
+        }
+
+        .diary-hero p {
+            margin-top: .5rem;
+            color: var(--diary-muted);
+        }
+
+        .diary-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .diary-dot {
+            position: absolute;
+            left: 3px;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid var(--diary-accent);
+            box-shadow: 0 0 0 4px rgba(195, 139, 102, .12);
+        }
+
+        .diary-date {
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--diary-muted);
+            padding-top: 6px;
+        }
+
+        .diary-card {
+            background: var(--diary-card);
+            border-radius: 12px;
+            padding: 14px 16px 16px;
+            box-shadow: 0 14px 32px rgba(25, 15, 5, .09);
+            border: 1px solid rgba(0, 0, 0, .02);
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+            cursor: pointer;
+        }
+
+        .diary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(25, 15, 5, .12);
+            border-color: rgba(195, 139, 102, .35);
+        }
+
+        .diary-label {
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: var(--diary-accent);
+            margin-bottom: 4px;
+        }
+
+        .diary-title {
+            margin: 0;
+            font-size: 1.1rem;
+            font-family: Georgia, serif;
+            color: #2e2019;
+        }
+
+        .diary-snippet {
+            margin-top: .4rem;
+            font-size: .95rem;
+            color: #43352b;
+            line-height: 1.6;
+        }
+
+        .diary-meta {
+            margin-top: .5rem;
+            font-size: .8rem;
+            color: var(--diary-muted);
+            display: flex;
+            gap: .8rem;
+            align-items: center;
+        }
+
+        .diary-meta span::before {
+            content: "• ";
+        }
+
+        .diary-read {
+            margin-left: auto;
+            font-weight: 600;
+            color: var(--diary-accent);
+        }
+
+        @media (max-width: 700px) {
+            .diary-entry {
+                grid-template-columns: 1fr;
+                padding-left: 10px;
+            }
+
+            .diary-date {
+                padding-top: 0;
+                font-size: .8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- reuse your existing header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="story.html">Stories</a>
+                <a href="poems.html">Poems</a>
+                <a href="dairies.html" aria-current="page">Diaries</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="diary-hero">
+        <div class="container">
+            <h1>Diaries</h1>
+            <p class="muted">Fragments from everyday life — quiet mornings, late trains, and thoughts that never became
+                essays.</p>
+        </div>
+    </section>
+
+    <main class="diary-container">
+        <section class="diary-timeline" aria-label="Diary timeline">
+
+            <article class="diary-entry" onclick="location.href='dairies/thoughts.html'">
+                <span class="diary-dot" aria-hidden="true"></span>
+                <div class="diary-date">Thoughts</div>
+                <div class="diary-card">
+                    <div class="diary-label">Quotes</div>
+                    <h2 class="diary-title">My quotes on humanity & honesty</h2>
+                    <p class="diary-snippet">
+                        A small collection of personal lines on humanity, awareness of the present moment, and being
+                        honest with yourself.
+                    </p>
+                    <div class="diary-meta">
+                        <span>Quotes</span>
+                        <span class="diary-read">Open</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="diary-entry" onclick="location.href='dairies/journey.html'">
+                <span class="diary-dot" aria-hidden="true"></span>
+                <div class="diary-date">Co‑author · Journey</div>
+                <div class="diary-card">
+                    <div class="diary-label">Milestone</div>
+                    <h2 class="diary-title">My journey to co‑author</h2>
+                    <p class="diary-snippet">
+                        From writing shayari to impress friends to becoming co‑author of more than fifty anthologies,
+                        this is how the journey began.
+                    </p>
+                    <div class="diary-meta">
+                        <span>Story</span>
+                        <span class="diary-read">Open</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Add more diary-entry blocks here -->
+        </section>
+    </main>
+
+    <!-- optional: reuse footer loader if you want -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data)
+            .catch(() => { });
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

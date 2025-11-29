@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>साँझ ढल जाएगी... — Poem</title>
+
+    <style>
+        :root {
+            --accent: #B29269;
+            --ink: #1b140f;
+            --muted: #6b6057;
+            --maxw: 1100px;
+            --thumb-w: 380px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background-image: url("images/bg1.jpg");
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: cover;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 48px 24px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .stage {
+            width: 100%;
+            max-width: var(--maxw);
+            display: grid;
+            grid-template-columns: var(--thumb-w) 1fr;
+            gap: 32px;
+            box-sizing: border-box;
+        }
+
+        .left-col {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .thumb-wrap {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
+            min-height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thumb-wrap img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .thumb-meta {
+            font-size: 14px;
+            color: var(--muted);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+        }
+
+        .meta-small {
+            font-size: 13px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: .55rem .9rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: rgba(255, 250, 244, 0.9);
+            border-radius: 14px;
+            padding: 24px 26px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.18);
+            box-sizing: border-box;
+        }
+
+        .title-row {
+            margin-bottom: 4px;
+        }
+
+        h1.title {
+            margin: 0;
+            font-family: "Georgia", serif;
+            color: --accent;
+            font-size: 34px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        }
+
+        .poem-panel {
+            margin-top: 10px;
+            line-height: 1.9;
+            font-size: 20px;
+            color: var(--ink);
+            white-space: pre-wrap;
+            max-height: 70vh;
+            overflow: auto;
+        }
+
+        .poem-panel::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .poem-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.16);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 24px 14px;
+            }
+
+            .stage {
+                grid-template-columns: 1fr;
+            }
+
+            h1.title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="stage" role="main" aria-labelledby="poem-title">
+        <!-- LEFT -->
+        <section class="left-col">
+            <div class="thumb-wrap" role="img" aria-label="Poem thumbnail">
+                <!-- change .png to .jpg if needed -->
+                <img src="images/sanjh.png" alt="साँझ ढल जाएगी — thumbnail">
+            </div>
+
+            <div class="thumb-meta">
+                <div><strong>Poem by</strong> Devil Barewar</div>
+                <div style="margin-top:10px;" class="meta-small">Hindi · evening · lyrical</div>
+            </div>
+
+            <a class="btn-back" href="../poems.html" title="Back to Poems">← Back to Poems</a>
+        </section>
+
+        <!-- RIGHT -->
+        <section class="right-col">
+            <div class="title-row">
+                <h1 id="poem-title" class="title">साँझ ढल जाएगी...</h1>
+                <p class="subtitle">A Hindi poem about an evening that slowly fades but leaves its fragrance.</p>
+            </div>
+
+            <article class="poem-panel" tabindex="0" aria-label="Poem text">
+                साँझ ढल जाएगी...
+
+                साँझ की ढलती वो रोशनी, मेरे करीब आने लगी है,
+                मैं यूँ ही निहारता रहा उसे, अब वो भी नज़रे मिलाने लगी है,
+                कैसे कहू, वो कितनी ख़ूबसूरत है साक़ी,
+                शाही रंगों को ओढ़, वो अपनी चुनरी सजाने लगी है...
+
+                ये साँझ हर बार, एक सुकून की महक छोड़ जाती है,
+                जिंदगी के सन्नाटो में, एक पैगाम छोड़ जाती है,
+                कैसे बदलने लगते है ये दिन इक साँझ में,
+                वक़्त-ही-वक़्त के पनाह में, वो सवरती रात छोड़ जाती है...
+
+                ढलती ये साँझ, एक ख़ुशनुमा एहसास बन जाएगी,
+                जाते-जाते कही दिल में अपनी परछाई छोड़ जाएगी,
+                कल फिर इंतज़ार रहेंगा एक नई साँझ का...
+                छोड़ पीछे वो नज़ारे, ये साँझ ढल भी जाएगी....,
+                और वो साँझ भी ढल जाएगी...
+            </article>
+        </section>
+    </main>
+
+</body>
+
+</html>

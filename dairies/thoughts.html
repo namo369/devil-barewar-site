@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My quotes — Diaries</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            background: radial-gradient(circle at top left, #fdf5ec, #f4e6d9);
+        }
+
+        .diaries-back-top {
+            max-width: 960px;
+            margin: 20px auto 0;
+            padding: 0 18px;
+            font-size: 0.9rem;
+        }
+
+        .diaries-back-top a {
+            color: #b0855c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .diaries-back-top a:hover {
+            text-decoration: underline;
+        }
+
+        .quotes-hero {
+            padding: 2.2rem 0 1.2rem;
+            text-align: center;
+        }
+
+        .quotes-hero h1 {
+            margin: 0;
+            font-family: Georgia, serif;
+            font-size: 32px;
+            color: #3b2a23;
+        }
+
+        .quotes-hero p {
+            margin-top: .5rem;
+            color: #7b6a5b;
+        }
+
+        .quotes-wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 18px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .quote-card {
+            position: relative;
+            background: #fffdf8;
+            border-radius: 14px;
+            padding: 18px 18px 20px;
+            box-shadow: 0 18px 40px rgba(40, 22, 8, .14);
+            border: 1px solid rgba(0, 0, 0, .03);
+            font-size: .98rem;
+            line-height: 1.7;
+            color: #3a2b22;
+            overflow: hidden;
+        }
+
+        .quote-card::before {
+            content: """;
+            position: absolute;
+            font-family: Georgia, serif;
+            font-size: 58px;
+            line-height: 1;
+            color: rgba(195, 139, 102, .22);
+            top: -10px;
+            left: 12px;
+            pointer-events: none;
+        }
+
+        .quote-text {
+            margin: 0;
+            text-indent: 1.6rem;
+        }
+
+        .quote-tag {
+            margin-top: .8rem;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: #b0855c;
+        }
+
+        @media (max-width: 600px) {
+            .quotes-wrap {
+                padding-bottom: 26px;
+            }
+
+            .quote-card {
+                font-size: .96rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- simple header using relative links back to root -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="../index.html">Devil Barewar</a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../story.html">Stories</a>
+                <a href="../poems.html">Poems</a>
+                <a href="../dairies.html" aria-current="page">Diaries</a>
+                <a href="../about.html">About</a>
+            </nav>
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="diaries-back-top">
+        <a href="../diaries.html">← Back to Diaries</a>
+    </div>
+
+    <section class="quotes-hero">
+        <div class="container">
+            <h1>My quotes</h1>
+            <p class="muted">Short thoughts on humanity, awareness and honesty.</p>
+        </div>
+    </section>
+
+    <main class="quotes-wrap">
+        <article class="quote-card">
+            <p class="quote-text">
+                "Humanity is an attitude to look beyond self. The moment you realize, we have plenty of reasons to serve
+                others without being selfish - it begins, and ends with the realization that everything in this universe
+                is interlinked with each other and you are one of the bonds between them."
+            </p>
+            <div class="quote-tag">Humanity · Connection</div>
+        </article>
+
+        <article class="quote-card">
+            <p class="quote-text">
+                "Humanity is nothing without consciousness of the present. The moment you become aware of your existence
+                - you don't have to create any specific mindset; it all happens automatically. You realize you don't
+                need to love others, you are the love."
+            </p>
+            <div class="quote-tag">Awareness · Presence</div>
+        </article>
+
+        <article class="quote-card">
+            <p class="quote-text">
+                "Honesty is the commitment. The commitment requires lots of dedication, patience, and willpower.
+                Remember that, honesty is not about being good or bad, nor God or Devil, it's about you. What you choose
+                to be honest is your honesty. Learn to be honest with yourself."
+            </p>
+            <div class="quote-tag">Honesty · Self</div>
+        </article>
+    </main>
+
+</body>
+
+</html>

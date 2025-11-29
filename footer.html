@@ -1,0 +1,193 @@
+<!-- ==========================
+     FOOTER TOP STRIP (NEW)
+=========================== -->
+<div class="footer-top-strip">
+    <h2>Stories brewed in kulhads, carried by love.</h2>
+    <p>Every word here is for the part of you that broke quietly, healed slowly, and still chooses to love as if it was
+        never hurt.</p>
+</div>
+
+
+<!-- ===========================
+     FOOTER (FINAL) - footer.html
+=========================== -->
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-main"> <!-- full-width background -->
+        <div class="footer-container"> <!-- center-aligned inner container -->
+
+            <!-- Column 1 -->
+            <div class="footer-col footer-brand-col">
+                <div class="brand-row">
+                    <div class="brand-mark">DB</div>
+                    <div class="brand-name">Devil Barewar</div>
+                </div>
+                <p class="footer-text small muted">Author | Storyteller | Poet</p>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-line"></div>
+                <nav class="footer-nav" aria-label="Quick links">
+                    <a href="index.html">Home</a>
+                    <a href="books.html">Books</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                </nav>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="footer-line"></div>
+                <p><strong>Email:</strong> <a href="mailto:hrivalcreation@gmail.com">devilbarewar@zohomail.in</a></p>
+
+                <!-- "Follow" label above icons -->
+                <p style="margin-top:1rem;"><strong>Follow</strong></p>
+                <div class="footer-line thin"></div>
+
+                <div class="social-icons" aria-label="Follow on social">
+                    <!-- **Important:** path is relative to project root: assets/images/<name>.png -->
+                    <a class="icon fb" href="https://www.facebook.com/devilbarewar" target="_blank"
+                        rel="noopener noreferrer" title="Facebook">
+                        <img src="assets/images/facebook.png" alt="Facebook" />
+                    </a>
+                    <a class="icon ig" href="https://www.instagram.com/devilbarewar" target="_blank"
+                        rel="noopener noreferrer" title="Instagram">
+                        <img src="assets/images/insta.png" alt="Instagram" />
+                    </a>
+                    <a class="icon ln" href="https://www.linkedin.com/in/dhawal-barewar-9696041b3" target="_blank"
+                        rel="noopener noreferrer" title="LinkedIn">
+                        <img src="assets/images/linkedin.png" alt="LinkedIn" />
+                    </a>
+                    <a class="icon yt" href="https://www.youtube.com/@devilbarewar5370" target="_blank"
+                        rel="noopener noreferrer" title="YouTube">
+                        <img src="assets/images/youtube.png" alt="YouTube" />
+                    </a>
+                    <a class="icon tw" href="https://x.com/DevilBarewar" target="_blank" rel="noopener noreferrer"
+                        title="X (Twitter)">
+                        <img src="assets/images/x.png" alt="X / Twitter" />
+                    </a>
+                    <a class="icon tw" href="https://devilbarewar.blogspot.com" target="_blank"
+                        rel="noopener noreferrer" title="X (Twitter)">
+                        <img src="assets/images/blogger.png" alt="X / Twitter" />
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Column 4 -->
+            <div class="footer-col">
+                <h4>Stay Updated</h4>
+                <div class="footer-line"></div>
+
+                <!-- Newsletter form: name -> email -> subscribe stacked vertically -->
+                <!-- REMOVED: onsubmit="return false;" so JS can handle submit -->
+                <form id="footer-newsform" class="footer-news">
+                    <label for="footer-name" class="visually-hidden">Name</label>
+                    <input id="footer-name" name="name" type="text" placeholder="Your name" />
+
+                    <label for="footer-email" class="visually-hidden">Email</label>
+                    <input id="footer-email" name="email" type="email" placeholder="Enter your email" />
+
+                    <button id="footer-subscribe" class="btn" type="submit">Subscribe</button>
+                </form>
+
+                <p class="small muted" style="margin-top:.6rem;">
+                    We won't share your email. By subscribing you agree to our
+                    <a href="privacy_policy.html">Privacy Policy</a>.
+                </p>
+            </div>
+
+        </div> <!-- /.footer-container -->
+    </div> <!-- /.footer-main -->
+
+    <!-- ============ FOOTER BOTTOM (FIXED & CENTERED) ============ -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+
+            <p class="footer-copy">© Devil Barewar. All Rights Reserved.</p>
+
+            <p class="footer-made">
+                Made with <span style="color:#e63946; font-size:1.2rem;">❤️</span> by Devil Barewar
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Font Awesome (kept, optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Apps Script binder: REPLACE ENDPOINT below with your deploy URL (you already deployed and have it) -->
+    <script>
+        (function () {
+            'use strict';
+
+            // <-- REPLACE with your web app URL (from Apps Script deploy) -->
+            const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwzHZJb35NbY1JqVXFLcpq5ZKPgOHqlyJ3_-jnPfniCJ515CH9VYbcQFx8qM3Cl0v9C/exec';
+            // Optional token — if your Apps Script checks it, set it; otherwise leave empty string.
+            const TOKEN = '';
+
+            function bindSignup(formId, nameId, emailId, sourceLabel) {
+                const form = document.getElementById(formId);
+                if (!form) return;
+                if (form.__boundSignup) return;
+                form.__boundSignup = true;
+
+                form.addEventListener('submit', function (ev) {
+                    ev.preventDefault();
+                    const nameEl = document.getElementById(nameId);
+                    const emailEl = document.getElementById(emailId);
+                    const name = nameEl ? nameEl.value.trim() : '';
+                    const email = emailEl ? emailEl.value.trim() : '';
+
+                    if (!email) {
+                        emailEl && emailEl.focus();
+                        return;
+                    }
+
+                    const payload = {
+                        name: name,
+                        email: email,
+                        token: TOKEN,
+                        source: sourceLabel || 'footer',
+                        page: window.location.href
+                    };
+
+                    fetch(ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    })
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data && (data.success || data.result === 'ok')) {
+                                // success UX
+                                if (nameEl) nameEl.value = '';
+                                if (emailEl) emailEl.value = '';
+                                const msg = document.createElement('div');
+                                msg.className = 'muted';
+                                msg.style.marginTop = '.5rem';
+                                msg.textContent = 'Thanks — subscription recorded.';
+                                form.appendChild(msg);
+                                setTimeout(() => msg.remove(), 4000);
+                            } else {
+                                alert('Could not subscribe: ' + (data && data.error ? data.error : 'unknown'));
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert('There was a problem. Please try again later.');
+                        });
+                });
+            }
+
+            // Bind the footer form on pages
+            bindSignup('footer-newsform', 'footer-name', 'footer-email', 'footer');
+
+        })();
+    </script>
+
+</footer>

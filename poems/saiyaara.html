@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>सैयारों का आलम — Poem</title>
+
+    <style>
+        :root {
+            --accent: #B29269;
+            --ink: #1b140f;
+            --muted: #6b6057;
+            --maxw: 1100px;
+            --thumb-w: 380px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background-image: url("images/bg1.jpg");
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: cover;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 48px 24px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .stage {
+            width: 100%;
+            max-width: var(--maxw);
+            display: grid;
+            grid-template-columns: var(--thumb-w) 1fr;
+            gap: 32px;
+            box-sizing: border-box;
+        }
+
+        .left-col {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .thumb-wrap {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
+            min-height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thumb-wrap img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .thumb-meta {
+            font-size: 14px;
+            color: var(--muted);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+        }
+
+        .meta-small {
+            font-size: 13px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: .55rem .9rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: rgba(255, 250, 244, 0.9);
+            border-radius: 14px;
+            padding: 24px 26px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.18);
+            box-sizing: border-box;
+        }
+
+        .title-row {
+            margin-bottom: 4px;
+        }
+
+        h1.title {
+            margin: 0;
+            font-family: "Georgia", serif;
+            color: var(--accent);
+            font-size: 34px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        }
+
+        .poem-panel {
+            margin-top: 10px;
+            line-height: 1.9;
+            font-size: 20px;
+            color: var(--ink);
+            white-space: pre-wrap;
+            max-height: 70vh;
+            overflow: auto;
+        }
+
+        .poem-panel::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .poem-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.16);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 24px 14px;
+            }
+
+            .stage {
+                grid-template-columns: 1fr;
+            }
+
+            h1.title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="stage" role="main" aria-labelledby="poem-title">
+        <!-- LEFT -->
+        <section class="left-col">
+            <div class="thumb-wrap" role="img" aria-label="Poem thumbnail">
+                <img src="images/saiyara.png" alt="सैयारों का आलम — thumbnail">
+                <!-- if file is saiyara.png or siyara.png, update name accordingly -->
+            </div>
+
+            <div class="thumb-meta">
+                <div><strong>Poem by</strong> Devil Barewar</div>
+                <div style="margin-top:10px;" class="meta-small">Hindi · lyrical</div>
+            </div>
+
+            <a class="btn-back" href="../poems.html" title="Back to Poems">← Back to Poems</a>
+        </section>
+
+        <!-- RIGHT -->
+        <section class="right-col">
+            <div class="title-row">
+                <h1 id="poem-title" class="title">सैयारों का आलम...</h1>
+                <p class="subtitle">A Hindi poem about distance, time and unspoken desires.</p>
+            </div>
+
+            <article class="poem-panel" tabindex="0" aria-label="Poem text">
+                किसी नूर के अरमानों में सारी रात जागा करने से,
+                उसे पाने की मिन्नतें नहीं किया करते...
+                ये चमक यूँ ही नहीं सजती आसमान में रहगुज़र,
+                वो पल-पल मरने वाले जीने की ख्वाईश नहीं किया करते...
+
+                फ़ासलों के फ़लसफ़े फ़ासलो में रह जाते है,
+                नज़दीक आना, हर किसी की नज़ाकत के में नहीं होता..
+                कितना ही बड़ा सैयारा क्यों ना हो वक़्त का,
+                वक़्त की दायरो से परे वक़्त का कोई मोल नहीं होता...
+
+                तसव्वुर कर तसली मिल जाने से,
+                सिर्फ राते कट जाती है...
+                लाख किसी को चाहने से कुछ नहीं होता यहाँ साहिबा,
+                खुलती आँखें सिर्फ सपने छोड़ जाती है...
+            </article>
+        </section>
+    </main>
+
+</body>
+
+</html>

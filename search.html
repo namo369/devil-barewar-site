@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Searching…</title>
+</head>
+
+<body>
+    <p>Searching…</p>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const q = (params.get('q') || '').toLowerCase().trim();
+
+        // Map of keywords → URL (target page + optional #anchor)
+        const routes = [
+            {
+                keywords: ['seashore eve', 'seashore', 'sea shore'],
+                url: 'poems.html#seashore-eve'
+            },
+            {
+                keywords: ['barsat', 'barsat-e-mohabbat', 'बरसात-ए-मोहब्बत'],
+                url: 'story.html#barsat-e-mohabbat'
+            },
+            {
+                keywords: ['ek yaad', 'ek yaad thi uski', 'एक याद थी उसकी'],
+                url: 'story.html#ek-yaad-thi-uski'
+            }
+        ];
+
+
+        // Find first route where any keyword is contained in q
+        const hit = routes.find(route =>
+            route.keywords.some(k => q.includes(k))
+        );
+
+        if (hit) {
+            // Redirect to the right page
+            window.location.href = hit.url;
+        } else {
+            // Fallback: if nothing matched, go to home sticky section
+            window.location.href = 'index.html#stickyHeading';
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Poems — Devil Barewar</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        :root {
+            --grid-gap: 24px;
+            --card-pad: 18px;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 2.2rem 0 1rem;
+            background: linear-gradient(180deg, #fff7f0, #f4e8de);
+        }
+
+        .page-hero h1 {
+            margin: 0;
+            font-family: Georgia, serif;
+            color: var(--espresso);
+            font-size: 34px;
+        }
+
+        .page-hero p {
+            margin: .5rem 0 0;
+            color: var(--muted);
+        }
+
+        .container-narrow {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 18px;
+        }
+
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--grid-gap);
+            align-items: start;
+        }
+
+        .poem-card {
+            display: flex;
+            gap: 16px;
+            background: var(--surface);
+            padding: var(--card-pad);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            min-height: 170px;
+            align-items: stretch;
+        }
+
+        .poem-thumb {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f3f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .poem-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .poem-meta {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poem-meta h3 {
+            margin: 0;
+            font-family: Georgia, serif;
+            color: var(--latte);
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+        }
+
+        .poem-meta p.desc {
+            margin: .6rem 0 0;
+            color: var(--chocolate);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .poem-actions {
+            margin-top: auto;
+            display: flex;
+            gap: .6rem;
+            align-items: center;
+        }
+
+        .note-missing {
+            display: inline-block;
+            margin-top: 10px;
+            background: #fff6f6;
+            color: #9b3b3b;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        @media(max-width:980px) {
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .poem-card {
+                flex-direction: column;
+            }
+
+            .poem-thumb {
+                width: 100%;
+                height: 200px;
+                flex: 0 0 auto;
+            }
+        }
+
+        .top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 1rem;
+            color: var(--muted);
+            flex-wrap: wrap;
+        }
+
+        /* LANGUAGE FILTER CHIPS */
+        .lang-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+        }
+
+        .lang-chip {
+            border: 1px solid rgba(59, 32, 17, 0.16);
+            background: #fff;
+            color: var(--muted);
+            border-radius: 999px;
+            padding: .25rem .7rem;
+            font-size: .85rem;
+            cursor: pointer;
+        }
+
+        .lang-chip.active {
+            background: var(--latte);
+            color: #fff;
+            border-color: var(--latte);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Devil Barewar</a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="story.html">Stories</a>
+                <a href="poems.html" aria-current="page">Poems</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="right-controls">
+                <button class="nav-toggle" aria-label="Menu">
+                    <span class="hamburger"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Poems</h1>
+            <p class="muted">Short lyrical moments — read, listen, and share.</p>
+        </div>
+    </section>
+
+    <main class="container-narrow">
+        <div class="top-actions">
+            <span class="muted">Click a poem to open its full page.</span>
+
+            <!-- LANGUAGE FILTERS -->
+            <div class="lang-filters" id="langFilters">
+                <button class="lang-chip active" data-lang="all">All</button>
+                <button class="lang-chip" data-lang="english">English</button>
+                <button class="lang-chip" data-lang="hindi">Hindi</button>
+                <button class="lang-chip" data-lang="marathi">Marathi</button>
+                <button class="lang-chip" data-lang="urdu">Urdu</button>
+                <button class="lang-chip" data-lang="punjabi">Punjabi</button>
+                <button class="lang-chip" data-lang="bangla">Bengali</button>
+            </div>
+        </div>
+
+        <section class="poems-grid" id="poemsGrid">
+
+            <!-- Example poem: Hindi -->
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/vowakt.html" title="वो वक्त हो चला">
+                    <img src="poems/images/vowakt.jpg" alt="वो वक्त हो चला thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>वो वक्त हो चला</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A short, poignant Hindi poem about time, parting, and memory. Click Open to read
+                        beautifully formatted text.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/vowakt.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="english">
+                <a class="poem-thumb" href="poems/ssu.html" title="Seashore Eve">
+                    <img src="poems/images/ssu.jpg" alt="Seashore Eve thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>Seashore Eve</h3>
+                    <div class="sub muted">by Devil Barewar • English</div>
+                    <p class="desc">An English poem about a calm evening by the sea, clouds, castles of sand and fading
+                        light.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/ssu.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/siyara.html" title="सैयारों का आलम">
+                    <img src="poems/images/saiyara.png" alt="सैयारों का आलम thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>सैयारों का आलम...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A Hindi poem about distant stars, time, and the ache of unrealised wishes.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/saiyaara.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/tiranga.html" title="वो तिरंगा">
+                    <img src="poems/images/tiranga.png" alt="वो तिरंगा thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>वो तिरंगा...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A patriotic Hindi poem about the tricolour, its colours and the sacrifices behind
+                        its glory.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/tiranga.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="english">
+                <a class="poem-thumb" href="poems/first.html" title="First meet">
+                    <img src="poems/images/first.png" alt="First meet thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>First meet</h3>
+                    <div class="sub muted">by Devil Barewar • English</div>
+                    <p class="desc">A heartfelt English poem about the first meeting with a mother, full of love and
+                        care.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/first.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/darbdar.html" title="मैं दर-ब-दर">
+                    <img src="poems/images/darbdar.png" alt="मैं दर-ब-दर thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>मैं दर-ब-दर...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A Hindi poem about wandering far from oneself, like drifting clouds and buried
+                        stories.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/darbdar.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/sanjh.html" title="साँझ ढल जाएगी">
+                    <img src="poems/images/sanjh.png" alt="साँझ ढल जाएगी thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>साँझ ढल जाएगी...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A gentle Hindi poem about evening light, quiet messages, and the promise of another
+                        dusk.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/sanjh.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/fhataye.html" title="ख़ताएँ">
+                    <img src="poems/images/fhataye.png" alt="ख़ताएँ thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>ख़ताएँ</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A reflective Hindi poem about unspoken connections, fleeting desires and the
+                        mistakes left by love.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/fhataye.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/benaam.html" title="बेनाम बसेरा">
+                    <img src="poems/images/benaam.png" alt="बेनाम बसेरा thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>बेनाम बसेरा</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A Hindi poem about a nameless shelter, lost expectations and half-told stories.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/benaam.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/ekdin.html" title="एक दिन के इंतज़ार में">
+                    <img src="poems/images/ekdin.png" alt="एक दिन के इंतज़ार में thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>एक दिन के इंतज़ार में...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A nostalgic Hindi poem about searching for peace, lost childhood rains, and waiting
+                        for a day that never returned.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/ekdin.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/tuhitu.html" title="तू ही तू">
+                    <img src="poems/images/tuhitu.png" alt="तू ही तू thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>तू ही तू</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A Hindi love poem where every philosophy, line and emotion circles back to just one
+                        person.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/tuhitu.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/yaara.html" title="यारा तेरी दोस्ती">
+                    <img src="poems/images/yaara.png" alt="यारा तेरी दोस्ती thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>यारा तेरी दोस्ती...</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A heartfelt Hindi poem about a friend who teaches trust, joy and the real meaning of
+                        living.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/yaara.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="english">
+                <a class="poem-thumb" href="poems/jesus.html" title="Jesus my lord">
+                    <img src="poems/images/jesus.png" alt="Jesus my lord thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>Jesus my lord...</h3>
+                    <div class="sub muted">by Devil Barewar • English</div>
+                    <p class="desc">A spiritual English poem calling on Jesus to bring light, peace and awakening to a
+                        suffering world.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/jesus.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/maula.html" title="मौला की अज़ानों में">
+                    <img src="poems/images/maula.png" alt="मौला की अज़ानों में thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>मौला की अज़ानों में</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A spiritual Hindi poem about struggles, unanswered prayers and hoping for mercy at
+                        the doors of the Divine.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/maula.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="english">
+                <a class="poem-thumb" href="poems/someone.html" title="Someone special">
+                    <img src="poems/images/someone.png" alt="Someone special thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>Someone special</h3>
+                    <div class="sub muted">by Devil Barewar • English</div>
+                    <p class="desc">An English love poem about a special person who shares every tear, fear and story.
+                    </p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/someone.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/mero.html" title="मे रो सावरिया">
+                    <img src="poems/images/mero.png" alt="मे रो सावरिया thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>मे रो सावरिया</h3>
+                    <div class="sub muted">by Devil Barewar • Braj / Hindi</div>
+                    <p class="desc">A Braj-flavoured devotional poem of a simple girl from Braj, lost in love with her
+                        Kanha.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/mero.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="hindi">
+                <a class="poem-thumb" href="poems/tum.html" title="तुम हौसला रखना">
+                    <img src="poems/images/tum.png" alt="तुम हौसला रखना thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>तुम हौसला रखना</h3>
+                    <div class="sub muted">by Devil Barewar • Hindi</div>
+                    <p class="desc">A Hindi motivational poem about keeping courage on dangerous roads and valuing the
+                        one life we get.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/tum.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+            <article class="poem-card" data-lang="english">
+                <a class="poem-thumb" href="poems/life.html" title="Life's Tragedy...">
+                    <img src="poems/images/life.jpg" alt="Life's Tragedy thumbnail">
+                </a>
+                <div class="poem-meta">
+                    <h3>Life's Tragedy...</h3>
+                    <div class="sub muted">by Devil Barewar • English</div>
+                    <p class="desc">An English poem about the storms, masks, and opportunities hidden inside the games
+                        of life.</p>
+                    <div class="poem-actions">
+                        <a class="btn" href="poems/life.html">Open</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+            </article>
+
+
+            <!-- Add more cards with data-lang="marathi" / "urdu" / "punjabi" / "bangla" etc. -->
+
+        </section>
+    </main>
+
+    <!-- footer injection -->
+    <div id="footer-placeholder"></div>
+    <script>
+        (function () {
+            function insertHtml(html) { document.getElementById('footer-placeholder').innerHTML = html; }
+            fetch('assets/components/footer.html')
+                .then(res => { if (!res.ok) return fetch('footer.html'); return res; })
+                .then(res => res.text())
+                .then(insertHtml)
+                .catch(() => insertHtml('<footer class="site-footer"><div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-copy">© Devil Barewar. All Rights Reserved.</p></div></div></footer>'));
+        })();
+    </script>
+
+    <script src="assets/js/main.js"></script>
+
+    <!-- footer fallback -->
+    <div id="footer-placeholder-2"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => { })
+            .catch(() => { });
+    </script>
+
+    <!-- LANGUAGE FILTER SCRIPT -->
+    <script>
+        (function () {
+            const chips = document.querySelectorAll('.lang-chip');
+            const cards = document.querySelectorAll('.poem-card');
+
+            function applyFilter(lang) {
+                cards.forEach(card => {
+                    const cLang = card.getAttribute('data-lang');
+                    if (lang === 'all' || cLang === lang) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const lang = chip.getAttribute('data-lang');
+                    chips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    applyFilter(lang);
+                });
+            });
+
+            applyFilter('all');
+        })();
+    </script>
+
+</body>
+
+</html>

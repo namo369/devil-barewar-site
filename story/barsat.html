@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>बरसात — Story</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            /* warm monsoon dusk */
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), rgba(32, 16, 8, 0.28)),
+                linear-gradient(135deg, #241923, #3c2837 40%, #523344);
+            color: #fdf7f0;
+        }
+
+        .story-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .story-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .story-kicker {
+            font-size: .8rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #d4b0cf;
+        }
+
+        .story-title {
+            margin: 0;
+            font-family: Georgia, "Noto Serif", serif;
+            font-size: 30px;
+            color: #ffe8dc;
+        }
+
+        .story-sub {
+            font-size: .9rem;
+            color: #ead3e7;
+        }
+
+        .story-hero {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 0 auto 22px;
+            /* center */
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            width: 80%;
+            /* smaller than page width */
+            max-width: 900px;
+            /* optional cap */
+        }
+
+        .story-hero img {
+            display: block;
+            width: 100%;
+            /* fit inside smaller block */
+            height: auto;
+            /* keep aspect ratio */
+            object-fit: contain;
+            filter: saturate(1.05) contrast(1.03);
+        }
+
+        .story-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(130deg, rgba(255, 255, 255, 0.18) 0, transparent 40%),
+                radial-gradient(circle at bottom, rgba(0, 0, 0, 0.45), transparent 60%);
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+
+        .story-body {
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.10), rgba(24, 10, 18, 0.98));
+            border-radius: 16px;
+            padding: 18px 18px 22px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #f7f1ea;
+        }
+
+        .story-body p {
+            margin: 0 0 1rem;
+            text-align: justify;
+        }
+
+        .story-back-fixed {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            font-size: .9rem;
+            z-index: 20;
+        }
+
+        .story-back-fixed a {
+            color: #ffc98a;
+            text-decoration: none;
+        }
+
+        .story-back-fixed a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .story-shell {
+                padding-inline: 14px;
+            }
+
+            .story-title {
+                font-size: 24px;
+            }
+
+            .story-hero img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="story-shell">
+
+        <header class="story-header">
+            <div class="story-header-left">
+                <div class="story-kicker">Short story · Romance · Rain</div>
+                <h1 class="story-title">बरसात‑ए‑मोहब्बत</h1>
+                <p class="story-sub">सावन की सुबह, हड़पसर बस स्टैंड, एक छाता और ३०० मीटर का सफर — मोहब्बत की पहली आहट।
+                </p>
+            </div>
+        </header>
+
+        <figure class="story-hero">
+            <img src="images/barsat.jpg" alt="बरसात — rain and umbrella scene">
+        </figure>
+
+        <article class="story-body">
+            <p>कहते है, मोहब्बत और मौत कभी बताकर नहीं होती, बस हो जाती है। मैं मौत का दावा तो नहीं करता, मगर हाँ,
+                मोहब्बत जरूर हो जाती है।</p>
+            <p>वो सावन की सुबह – गीली सड़के, गरजते बादल, पत्तों पर ठहरी पानी की बूंदे और चारों तरफ़ गूंजती ये बरसात की
+                सरगम। कुछ यूँ ही मौसम था उस दिन जब वो पहली बार मुझसे मिली थी। जब राज मार्केटिंग कंपनी में ऑफिस असोसिएट
+                के लिए साक्षात्कार देने जा रहा था।</p>
+            <p>सुबह माँ ने घर से निकलते समय अच्छे से समझाते हुए कहा था, “आर्यन, जाते वक्त अपने साथ छाता लेते जाना, हर
+                बार की तरह भूलना मत।” मगर मैं अपनी परंपरा के मुताबिक, घर से देरी से निकला। ऊपर से माँ से छाता लेना भी
+                भूल गया। अब जब मैं हड़पसर बस स्टैंड पर खड़ा बारिश के रुक जाने का इंतजार कर रहा था, तब खुद को ही दोष दिए
+                जा रहा था। आखिरकार मेरे पास अफसोस करने के अलावा कुछ और बचा ही नहीं था।</p>
+            <p>कंपनी बस स्टैंड से लगभग ३०० मीटर की दूरी पर थी, मगर मैं सफेद शर्ट खराब हो जाने के डर से वहीँ खड़ा रहा।
+                बारिश काफी देर से रुकने का नाम ही नहीं ले रही थी। बस स्टैंड पर एक के बाद एक बस आती, उनसे लोग उतरते और
+                अपना छाता खोल वहाँ से चले जाते। और मैं एकटक उन्हें देखता रहता। काफी देर से खड़े रहने के कारण पैरों में भी
+                दर्द होने लगा था। मैं सिर पर हाथ रख पीछे रखी लोहे की बेंच पर बैठ गया।</p>
+            <p>मैं सारी उम्मीद हार चूका था, तभी एक लड़की मेरे पास आई। जैसे कोई परी मुझे इस मुसीबत से निजात दिलाने के लिए
+                ही आई हो। उसने हौले से कहा, “इक्स्क्यूझ मी सर, क्या आप बता सकते हैं ये राज मार्केटिंग कंपनी यहाँ से
+                कितनी दूर है? दरअसल मेरा नेट काम नहीं कर रहा है तो कुछ समझ नहीं या रहा है। क्या आप मुझे बात सकते है?”
+            </p>
+            <p>उसकी वो आवाज शहद की बूंद-सी मीठी और गुलाब की पंखुड़ियों-सी कोमल थी। मैंने हौले से अपना सिर ऊपर करते हुए
+                उसे देखा। उसने पीले रंग का सूट पहना हुआ था। ओठों पर मुस्कान, आँखों में गहरा काजल और चेहरे पर आते
+                घुंघराले बाल उसकी खूबसूरती पर चार चाँद लगा रहे थे। लेकिन जब उसके हाथों में पीले रंग का छाता देखा मन
+                अंदर-ही-अंदर चहल-कदमी करने लगा।</p>
+            <p>मैंने मुस्कुराते हुए कहा, “बस यहाँ से थोड़ी ही दूरी पर है। अगर आपको हर्ज ना हो, तो क्या मैं आपके साथ चल
+                सकता हूँ?” ये सुन उसके चेहरे पर असमंजस के भाव उभर आए, जो कि मैं साफ उसके चेहरे पर पढ़ सकता था। मैंने उसे
+                समझाते हुए कहा, “दरअसल मैम, मैं भी वहीँ जाना चाहता हूँ, मगर मेरे पास छाता नहीं है।”</p>
+            <p>उसने एक मुस्कान देते हुए कहा, “ठीक है।” उसका वो ‘ठीक है’ कहना ऐसा लग रहा था, जैसे किसी ने अमृत पिला दिया
+                हो।</p>
+            <p>वो ३०० मीटर का सफर – हम दोनों बरसात में एक छाते के नीचे पानी के गड्ढों से बचते बचाते हुए चल रहे थे। मैंने
+                इसी दौरान उससे पूछा, “आपका नाम?”</p>
+            <p>“जी, राजश्री”, उसने पूछा, “और आपका?”</p>
+            <p>“आर्यन”, मैंने जवाब दिया। ये नाम पूछने से शुरू हुआ सिलसिला कब जॉब, कॉलेज, सपनों तक पहुँचा, इल्म ही ना
+                हुआ। बातों-बातों में सफर भी तय हो गया। राजश्री कंपनी में एच.आर. के साक्षात्कार के लिए आई थी। कंपनी के
+                ऑफिस में हम दोनों ने पूछताछ की तो पता चला – राजश्री का साक्षात्कार पहले फ्लोर पर है और मेरा ग्राउंड
+                फ्लोर पर। साक्षात्कार के लिए हमें काफी देर हो चूकी थी। उसने मुझे ‘ऑल द बेस्ट’ कहा और वहाँ से जाने लगी।
+                जैसे-जैसे वो मुझसे दूर जा रही थी, मन उदास होने लगा था। मैं उसे आखरी बार देखना चाहता था, मगर लग रहा था
+                जैसे किसी ने मुझे रोक रखा हो। मैं वहीँ खड़ा उसे देखता रहा, तभी वो एक दफा रुकी और पलटकर कहा, “इंतजार
+                करना। वो छाता नहीं है ना तुम्हारे पास।”</p>
+            <p>बस ये सुनते ही दिल गार्डन‑गार्डन हो गया और मैंने हामी भरते हुए सिर हिला दिया।</p>
+        </article>
+
+        <div class="story-back-fixed">
+            <a href="../story.html">← Back to Stories</a>
+        </div>
+
+    </main>
+</body>
+
+</html>

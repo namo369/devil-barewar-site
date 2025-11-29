@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — Devil Barewar</title>
+    <meta name="description" content="Contact Devil Barewar — For enquiries, speaking, partnerships or rights." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devil Barewar",
+    "url": "/contact.html"
+  }
+  </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <a class="brand" href="/" aria-label="Devil Barewar - Home">Devil Barewar</a>
+
+            <div class="right-controls" role="navigation" aria-label="Main navigation">
+
+                <!-- Search -->
+                <form id="site-search" class="site-search" role="search" action="/search.html" method="get">
+                    <label for="q" class="visually-hidden">Search</label>
+                    <input id="q" name="q" type="search" placeholder="Search essays, books..." aria-label="Search">
+                    <button class="search-btn" aria-label="Search">🔍</button>
+                </form>
+
+                <!-- Nav -->
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="/about.html">About</a>
+                    <a href="/books.html">Books</a>
+                    <a href="/contact.html" aria-current="page">Contact</a>
+                </nav>
+
+                <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main id="top">
+        <section class="container" style="padding:2rem 0;">
+
+            <h1>Contact</h1>
+            <p class="lead">For speaking, collaborations, book rights, or general enquiries — feel free to reach out.
+            </p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;">
+
+                <!-- Contact form -->
+                <form id="contact-form" action="#" method="post" onsubmit="return false;"
+                    style="display:flex;flex-direction:column;gap:.8rem">
+
+                    <label>Name
+                        <input type="text" name="name" required
+                            style="padding:.5rem .7rem;border-radius:6px;border:1px solid #ddd;">
+                    </label>
+
+                    <label>Email
+                        <input type="email" name="email" required
+                            style="padding:.5rem .7rem;border-radius:6px;border:1px solid #ddd;">
+                    </label>
+
+                    <label>Message
+                        <textarea name="message" rows="6" required
+                            style="padding:.6rem .7rem;border-radius:6px;border:1px solid #ddd;"></textarea>
+                    </label>
+
+                    <button class="btn" type="submit">Send Message</button>
+
+                    <p class="muted small">This form is static. I can integrate Formspree / Netlify Forms if you want
+                        messages to reach your email.</p>
+                </form>
+
+                <!-- Contact info -->
+                <div style="padding:1rem;border-radius:8px;background:#f8f8f8;border:1px solid #eee;">
+                    <h3>Direct Email</h3>
+                    <p>
+                        <a href="mailto:hello@example.com">devilbarewar@zohomail.in</a>
+                    </p>
+
+                    <h3>Social Profiles</h3>
+                    <ul style="list-style:none;padding-left:0;line-height:1.8;">
+                        <li><a href="https://www.facebook.com/share/17kpTqYiVm/" target="_blank"
+                                rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/devilbarewar?igsh=ZDg2a3ZjM2Q2ZDdi" target="_blank"
+                                rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/in/dhawal-barewar-9696041b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://youtube.com/@yourchannel" target="_blank"
+                                rel="noopener noreferrer">YouTube</a></li>
+                        <li><a href="https://x.com/DevilBarewar?t=5LukiPCQvYUqOOeLRmEfGg&s=08" target="_blank"
+                                rel="noopener noreferrer">X</a></li>
+                    </ul>
+
+                    <h3>Professional</h3>
+                    <p>Open to speaking events, interviews, guest writing, collaborations and creative consulting.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">^</button>
+
+    <script src="assets/js/main.js"></script>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+
+
+</body>
+
+</html>

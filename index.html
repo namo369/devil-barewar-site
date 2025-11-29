@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Devil Barewar — Writer</title>
+    <meta name="description" content="Official site of Devil Barewar — stories, books and essays." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devil Barewar",
+    "url": "/"
+  }
+  </script>
+    <style>
+        /* Sticky-notes specific styles (keeps separate so no global CSS edits required) */
+        .sticky-section {
+            padding: 2rem 0;
+        }
+
+        .sticky-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .sticky {
+            background: linear-gradient(180deg, #fff6b8, #fff1a8);
+            border-radius: 8px;
+            padding: 14px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 12px 30px rgba(20, 20, 20, 0.12);
+            cursor: pointer;
+            transform-origin: center;
+            transition: transform .18s ease, box-shadow .18s ease;
+            user-select: none;
+        }
+
+        .sticky:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(20, 20, 20, .16);
+        }
+
+        .sticky .note-title {
+            font-weight: 800;
+            color: #25364f;
+            margin: 0;
+        }
+
+        .sticky .note-meta {
+            font-size: .85rem;
+            color: #6b7280;
+        }
+
+        .note-snippet {
+            color: #222;
+            font-size: .95rem;
+            flex: 1;
+            overflow: hidden
+        }
+
+        .note-thumb {
+            width: 100%;
+            height: 86px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        /* subtle tilt */
+        .tilt-1 {
+            transform: rotate(-2deg);
+        }
+
+        .tilt-2 {
+            transform: rotate(.8deg);
+        }
+
+        .tilt-3 {
+            transform: rotate(-1.2deg);
+        }
+
+        .tilt-4 {
+            transform: rotate(1.6deg);
+        }
+
+        .tilt-5 {
+            transform: rotate(-0.6deg);
+        }
+
+        .tilt-6 {
+            transform: rotate(2.2deg);
+        }
+
+        .tilt-7 {
+            transform: rotate(-1deg);
+        }
+
+        /* Modal */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            z-index: 140;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .18s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .note-modal {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(.98);
+            width: min(900px, calc(100% - 40px));
+            max-height: 86vh;
+            overflow: auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px;
+            z-index: 150;
+            box-shadow: 0 30px 60px rgba(10, 10, 20, .25);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .18s, transform .18s, visibility .18s;
+        }
+
+        .note-modal.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .modal-title {
+            font-size: 1.15rem;
+            color: #1b2b4a;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .modal-body {
+            margin-top: 10px;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            margin-top: 14px;
+            display: flex;
+            gap: .6rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            background: #1b2b4a;
+            color: #fff;
+            padding: .5rem .8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: #1b2b4a;
+            border: 1px solid #e6e6e6;
+        }
+
+        /* Responsive columns */
+        @media (max-width: 1100px) {
+            .sticky-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .sticky-board {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .note-thumb {
+                height: 64px
+            }
+        }
+
+        @media (max-width: 420px) {
+            .sticky-board {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* Make sticky thumbnails show the full image (no crop) */
+        .sticky .note-thumb {
+            width: 100%;
+            /* allow flexible height while keeping a reasonable max */
+            height: auto;
+            max-height: 170px;
+            /* adjust to taste (86px → 110px shows more) */
+            display: block;
+            object-fit: contain;
+            /* ensures the whole image is visible */
+            background: #fff;
+            /* neutral background if image has different aspect */
+            border-radius: 6px;
+            overflow: visible;
+            /* ensure the image isn't clipped by parent */
+        }
+
+        /* ensure any img inside note-thumb behaves */
+        .sticky .note-thumb img,
+        .note-thumb {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header: brand + visible search + hamburger -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <!-- Left: Brand -->
+            <a class="brand" href="/" aria-label="Devil Barewar - Home">Devil Barewar</a>
+
+            <!-- Right controls: search + hamburger -->
+            <div class="right-controls" role="navigation" aria-label="Main navigation">
+                <!-- Visible Search -->
+                <form id="site-search" class="site-search" role="search" action="search.html" method="get"
+                    aria-label="Search site">
+                    <label for="q" class="visually-hidden">Search</label>
+                    <input id="q" name="q" type="search" placeholder="Search essays, books..." aria-label="Search" />
+                    <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+                </form>
+
+
+                <!-- Hamburger only -->
+                <button id="menu-toggle" class="nav-toggle" aria-label="Open menu" aria-haspopup="true"
+                    aria-controls="bottom-menu" aria-expanded="false">
+                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Main -->
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1>Stories you feel long after the page is closed.</h1>
+                    <p class="lead">Hi! Buddies,</p>
+                    <p>I zealously welcome you all to my creative world. I write about the moments you thought were
+                        small—one kulhad of chai, one lane in the rain, one unfinished message—and turn them into
+                        memories that refuse to leave. Here, love waits at Tapri, faith walks with doubt, and ordinary
+                        people carry entire universes in their pockets.</p>
+                    <p>If you’ve ever stayed awake for a “last seen,” searched old streets for an old version of
+                        yourself, or believed your heart is a little foolish but still brave—these poems, stories, and
+                        films are written for you.</p>
+                    <p>Come if you’ve ever waited for a message that never came, smiled at an old scar, or felt that
+                        your heart is a little mad and beautifully alive. Leave when you must—but let a line, a scene,
+                        or a face walk back with you.
+                    </p>
+                    <p>
+                        <a class="btn" href="/books.html">View books</a>
+                        <a class="btn btn-ghost" href="/blog.html">Latest Updates</a>
+                    </p>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/images/wall.jpg" alt="Devil Barewar portrait">
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================
+     HERO SLIDER / CAROUSEL
+=========================== -->
+        <section class="hero-slider">
+            <div class="slider">
+                <div class="slide active">
+                    <img src="assets/images/kulhad.png" alt="Slide 1">
+                </div>
+                <div class="slide active">
+                    <img src="assets/images/aakhari.png" alt="Slide 2">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/images/gumsudha.png" alt="Slide 3">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/images/break.jpg" alt="Slide 4">
+                </div>
+            </div>
+
+            <!-- Slider dots -->
+            <div class="slider-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+            </div>
+        </section>
+
+
+        <!-- Latest Book -->
+        <section class="container latest-book">
+            <h2>Upcoming Book</h2>
+            <div class="card book-card">
+                <img src="assets/images/book_cover.jpg" alt="Book title — cover" class="book-cover">
+                <div class="book-meta">
+                    <h3>कुछ अनसुने लिफ़ाफ़े</h3>
+                    <p class="excerpt">इश्क़ के कुछ ऐसे लिफ़ाफ़े, जो कभी सुने नहीं गए। एक सफ़र जो इश्क़ और रुहानियत से वाकिफ़
+                        है।</p>
+                    <p>
+                        <a class="btn">coming soon</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent posts (JS-driven) -->
+        <section class="container recent-posts">
+            <h2>Recent essays</h2>
+            <div id="posts" class="posts-grid">
+                <!-- posts populated by assets/js/main.js from data/posts.json -->
+            </div>
+        </section>
+
+        <!-- Sticky Notes section integrated into homepage -->
+        <section class="container sticky-section" aria-labelledby="stickyHeading">
+            <h2 id="stickyHeading">Categories — tap a note</h2>
+            <div class="sticky-board" id="stickyBoard">
+                <!-- changed target to story.html (matches your file) -->
+                <a href="story.html" style="text-decoration:none; color:inherit;">
+                    <div class="sticky tilt-1" data-key="stories" tabindex="0" role="button">
+                        <div class="note-title">Stories</div>
+                        <div class="note-meta">Collections & essays</div>
+                        <img class="note-thumb"
+                            src="https://th.bing.com/th/id/R.3129115feda63602f21bf74f0e649676?rik=Cf9atpz%2bElSzDw&riu=http%3a%2f%2fwww.yourmagneticstory.com%2fwp-content%2fuploads%2f2015%2f11%2fstory3.jpg&ehk=QpVHdpZ2gdcfwjhq%2b2fdJBsMMxTLpgWKSJqYd4hlq2c%3d&risl=&pid=ImgRaw&r=0"
+                            alt="Stories thumb">
+                        <div class="note-snippet">Longform tales about memory, place and the small lives that linger.
+                        </div>
+                    </div>
+                </a>
+
+                <div class="sticky tilt-2" data-key="poems" data-href="poems.html" tabindex="0" role="button">
+                    <div class="note-title">Poems</div>
+                    <div class="note-meta">Lyrical pieces</div>
+                    <img class="note-thumb"
+                        src="https://tse1.mm.bing.net/th/id/OIP.fmwE-ayyjmvioF4xL7GJJgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Poems thumb">
+                    <div class="note-snippet">
+                        Short lyrical poems — moments captured in few lines.
+                    </div>
+                </div>
+
+                <div class="sticky tilt-3" data-key="writing" data-href="writingu.html" tabindex="0" role="button">
+                    <div class="note-title">Writing</div>
+                    <div class="note-meta">Prompts & craft</div>
+                    <img class="note-thumb" src="assets/images/writing.png" alt="Stories thumb">
+                    <div class="note-snippet">Notes on craft, prompts, and short guides for writers.</div>
+                </div>
+
+                <div class="sticky tilt-4" data-key="diary" data-href="diaries.html" tabindex="0" role="button">
+                    <div class="note-title">Diaries</div>
+                    <div class="note-meta">Personal journal</div>
+                    <img class="note-thumb"
+                        src="https://tse3.mm.bing.net/th/id/OIP.RCzUcexvBgd-JL2CI2k72wHaE-?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Stories thumb">
+                    <div class="note-snippet">Personal daily entries and reflections.</div>
+                </div>
+
+                <div class="sticky tilt-5" data-key="screenplay" data-href="screenplay.html" tabindex="0" role="button">
+                    <div class="note-title">Screenplay</div>
+                    <div class="note-meta">Scripts</div>
+                    <img class="note-thumb"
+                        src="https://thumbs.dreamstime.com/b/screenplay-abstract-colorful-illustration-notebook-director-chair-clapboard-filmstrip-film-theme-64980732.jpg"
+                        alt="Stories thumb">
+                    <div class="note-snippet">Scene drafts, structure, and screenwriting notes.</div>
+                </div>
+
+                <div class="sticky tilt-6" data-key="shortfilms" data-href="shortfilms.html" tabindex="0" role="button">
+                    <div class="note-title">Short Films</div>
+                    <div class="note-meta">Film ideas</div>
+                    <img class="note-thumb"
+                        src="https://tse4.mm.bing.net/th/id/OIP.U0EOU_l2NFvRDGV2cfHBMQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Stories thumb">
+                    <div class="note-snippet">Short film concepts, shot ideas and festival notes.</div>
+                </div>
+
+                <div class="sticky tilt-7" data-key="books" tabindex="0" role="button">
+                    <div class="note-title">Books</div>
+                    <div class="note-meta">Novels & collections</div>
+                    <img class="note-thumb"
+                        src="https://media.istockphoto.com/id/2060984408/photo/stack-of-colorful-books-education-background-back-to-school-book-hardback-colorful-books-on.jpg?b=1&s=612x612&w=0&k=20&c=X0W0G1UtRZPpDrsxdjg52sAgCbEczndY9DQqCWke-rg="
+                        alt="Stories thumb">
+                    <div class="note-snippet">Published works, buy links, excerpts.</div>
+                </div>
+
+                <div class="sticky tilt-3" data-key="podcast" data-href="podcast.html" tabindex="0" role="button">
+                    <div class="note-title">Podcast</div>
+                    <div class="note-meta">Audio stories</div>
+                    <img class="note-thumb"
+                        src="https://tse2.mm.bing.net/th/id/OIP.ST2_cN5V_CRzTQRRLkS7wwHaEy?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Podcast thumb">
+                    <div class="note-snippet">
+                        Listen to thoughtful conversations, storytelling and narrated episodes.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- START FOOTER -->
+    <!-- FOOTER INJECTION POINT -->
+    <div id="site-footer-container"></div>
+
+    <!-- load footer fragment, then main.js -->
+    <script src="/assets/js/footer-load.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <!-- END FOOTER -->
+
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">^</button>
+
+    <!-- MENU OVERLAY + SINGLE BOTTOM-SHEET (only one copy) -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+
+    <aside id="bottom-menu" class="bottom-menu" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="bottom-menu-title">
+        <div class="bottom-menu-inner">
+            <div class="bottom-menu-header">
+                <h2 id="bottom-menu-title">Menu</h2>
+                <button id="menu-close" class="menu-close" aria-label="Close menu">✕</button>
+            </div>
+
+            <nav class="bottom-nav" aria-label="Primary">
+                <a href="/about.html">About</a>
+                <a href="/books.html">Books</a>
+                <a href="/contact.html">Contact</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+            </nav>
+
+        </div>
+    </aside>
+
+    <script src="assets/js/main.js"></script>
+
+    <!-- Sticky notes overlay & modal -->
+    <div class="overlay" id="noteOverlay" aria-hidden="true"></div>
+
+    <div class="note-modal" id="noteModal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <button id="modalClose" class="menu-close" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions">
+            <a id="openPageBtn" class="btn" href="#">Open</a>
+            <button id="modalCloseBtn" class="btn ghost">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // sticky notes script (keeps contentMap in-page)
+        document.addEventListener('DOMContentLoaded', function () {
+            const board = document.getElementById('stickyBoard');
+            const overlay = document.getElementById('noteOverlay');
+            const modal = document.getElementById('noteModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalClose = document.getElementById('modalClose');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const openPageBtn = document.getElementById('openPageBtn');
+
+            const contentMap = {
+                stories: {
+                    title: 'Stories',
+                    html: `<p>Recent stories & essays.</p>
+                   <ul>
+                     <li><a href="/blog/story-1.html">Story 1 — The Hill</a></li>
+                     <li><a href="/blog/story-2.html">Story 2 — Night Train</a></li>
+                     <li><a href="/blog/story-3.html">Story 3 — River</a></li>
+                   </ul>`,
+                    page: '/blog.html?q=stories'
+                },
+                poems: {
+                    title: 'Poems',
+                    html: `<p>Collection of poems.</p><ul><li><a href="/poems/poem-1.html">Poem 1</a></li></ul>`,
+                    page: '/poems.html'
+                },
+                writing: { title: 'Writing', html: '<p>Writing tips and prompts.</p>', page: '/writing.html' },
+                diary: { title: 'Diaries', html: '<p>Personal diary posts and reflections.</p>', page: '/diary.html' },
+                screenplay: { title: 'Screenplay', html: '<p>Screenplay drafts and notes.</p>', page: '/screenplay.html' },
+                shortfilms: { title: 'Short Films', html: '<p>Short film ideas and notes.</p>', page: '/shortfilms.html' },
+                books: { title: 'Books', html: '<p>Published books and excerpts.</p>', page: '/books.html' }
+            };
+
+            function openModal(key) {
+                const data = contentMap[key];
+                if (!data) return;
+                modalTitle.textContent = data.title;
+                modalBody.innerHTML = data.html;
+                openPageBtn.setAttribute('href', data.page || '#');
+                overlay.classList.add('show');
+                modal.classList.add('open');
+                overlay.setAttribute('aria-hidden', 'false');
+                modal.setAttribute('aria-hidden', 'false');
+                (modal.querySelector('a,button,input,textarea') || modalClose).focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                overlay.classList.remove('show');
+                modal.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            if (board) {
+                board.addEventListener('click', function (e) {
+                    const s = e.target.closest('.sticky');
+                    if (!s) return;
+
+                    // PREFER direct navigation if sticky has data-href (so poems/books open pages directly)
+                    const dh = s.getAttribute('data-href') || s.getAttribute('href');
+                    if (dh) {
+                        // if user used ctrl/cmd click, open in new tab
+                        if (e.ctrlKey || e.metaKey) {
+                            window.open(dh, '_blank', 'noopener');
+                            return;
+                        }
+                        window.location.href = dh;
+                        return;
+                    }
+
+                    // otherwise fallback to the modal behavior keyed by data-key
+                    const key = s.dataset.key;
+                    if (!key) return;
+                    openModal(key);
+                });
+
+                board.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        const s = e.target.closest('.sticky');
+                        if (!s) return;
+                        const dh = s.getAttribute('data-href') || s.getAttribute('href');
+                        if (dh) {
+                            if (e.ctrlKey || e.metaKey) {
+                                window.open(dh, '_blank', 'noopener');
+                                return;
+                            }
+                            window.location.href = dh;
+                            return;
+                        }
+                        openModal(s.dataset.key);
+                    }
+                });
+            }
+
+            overlay.addEventListener('click', closeModal);
+            modalClose.addEventListener('click', closeModal);
+            modalCloseBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+        });
+    </script>
+
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+
+    <script src="assets/js/footer-links.js"></script>
+
+</body>
+
+</html>

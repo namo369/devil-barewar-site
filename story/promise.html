@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Promise Kept — Story</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), rgba(32, 16, 8, 0.28)),
+                linear-gradient(135deg, #241923, #3c2837 40%, #523344);
+            color: #fdf7f0;
+        }
+
+        .story-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .story-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .story-kicker {
+            font-size: .8rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #d4b0cf;
+        }
+
+        .story-title {
+            margin: 0;
+            font-family: Georgia, "Noto Serif", serif;
+            font-size: 30px;
+            color: #ffe8dc;
+        }
+
+        .story-sub {
+            font-size: .9rem;
+            color: #ead3e7;
+        }
+
+        .story-hero {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 0 auto 22px;
+            /* center */
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            width: 80%;
+            /* smaller than page width */
+            max-width: 900px;
+            /* optional cap */
+        }
+
+        .story-hero img {
+            display: block;
+            width: 100%;
+            /* fit inside smaller block */
+            height: auto;
+            /* keep aspect ratio */
+            object-fit: contain;
+            filter: saturate(1.05) contrast(1.03);
+        }
+
+
+
+        .story-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(130deg, rgba(255, 255, 255, 0.18) 0, transparent 40%),
+                radial-gradient(circle at bottom, rgba(0, 0, 0, 0.45), transparent 60%);
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+
+        .story-body {
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.10), rgba(24, 10, 18, 0.98));
+            border-radius: 16px;
+            padding: 18px 18px 22px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #f7f1ea;
+        }
+
+        .story-body p {
+            margin: 0 0 1rem;
+            text-align: justify;
+        }
+
+        .story-back-fixed {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            font-size: .9rem;
+            z-index: 20;
+        }
+
+        .story-back-fixed a {
+            color: #ffc98a;
+            text-decoration: none;
+        }
+
+        .story-back-fixed a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .story-shell {
+                padding-inline: 14px;
+            }
+
+            .story-title {
+                font-size: 24px;
+            }
+
+            .story-hero img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="story-shell">
+
+        <header class="story-header">
+            <div class="story-header-left">
+                <div class="story-kicker">Short story · Fantasy · Love</div>
+                <h1 class="story-title">Promise Kept...</h1>
+                <p class="story-sub">A warrior wounded in battle remembers the woman he left behind and the promise that
+                    still holds his heart.</p>
+            </div>
+        </header>
+
+        <figure class="story-hero">
+            <img src="images/promise.jpg" alt="Promise Kept — warrior and sunset scene">
+        </figure>
+
+        <article class="story-body">
+            <p>“The warrior who is impelled by love is a far greater warrior than one who is driven by anger.”</p>
+            <p>A long time ago, a warrior lay injured on the battlefield, watching his last breaths slip away while he
+                wept in deep pain. Blood poured steadily from his wounded arm, arrows were buried deep in his chest, and
+                his body felt more exhausted than ever before. A slow, shallow darkness began to spread over his eyes as
+                the wild chaos of battle faded into a heavy, monotonous silence. In that blur, the random image of a
+                girl began to appear in his mind, and he remembered the last time he met her.</p>
+            <p>Two months earlier, after fighting a war for the Snuka dynasty, Ivanka had realized that he had killed
+                people for nothing. To him, he was no hero, only a murderer who took lives to earn the king’s grace.
+                Regret gnashed at him for his choices and for becoming a warrior at all. The guilt felt like a
+                pitch-black night closing in on him from every side, and at last he decided to return to his village.
+            </p>
+            <p>The village rested on the slope of Vazu Hill, wrapped in greenery, wavering slopes, zigzag lanes, and a
+                peaceful way of life. When Ivanka reached home, he saw his house crumbling from years of neglect. The
+                ceiling had collapsed, fragments of broken window glass lay scattered on the ground, and the whole place
+                looked as if it was breathing its final days.</p>
+            <p>Ivanka was the only one left from his family now. A year earlier, after his mother’s death, he had never
+                turned back to look at this house. Yet fear and guilt finally dragged him home. He opened the door and
+                stepped onto a thick layer of dust that had settled in his absence. Spider webs hung in every corner,
+                and everything was strewn about like fallen leaves in autumn. As Ivanka remembered his childhood, he
+                slowly sank into old memories.</p>
+            <p>Then, unexpectedly, a sharp scream rang out from outside. He turned and saw a beautiful girl, dressed in
+                a blue full gown with a bun at the back of her head, standing in the doorway with fury on her face and a
+                stick clutched in her left hand.</p>
+            <p>Ivanka’s eyes widened as if a long‑lost shooting star had just crossed his sky again. Her blazing eyes
+                fixed on his face without blinking. He somehow managed to say, “Hi, Suzume.”</p>
+            <p>Her silent lips trembled with rage as if shouting, “How dare you?” He stepped toward her with a faint
+                smile. Suzume tightened her grip on the stick and raised it between them as a warning not to come any
+                closer. He gently held the other end and asked, “How are you?”</p>
+            <p>She yanked the stick back with force and walked away from the house. Ivanka understood she was deeply
+                hurt and that he needed to make things right. He followed her, but without turning around she declared,
+                “Don’t act over‑smart, warrior. The princess is no longer interested in your vulgar innocence.”</p>
+            <p>He stopped and said softly, “Do you know I’m no longer a warrior?” In her anger she realized she had
+                missed something important. She turned and saw a pair of eyes filled with agony. The stick slipped from
+                her hand as he stepped closer. Ivanka took her right hand in his, trying to calm her and offer comfort.
+                “I am back,” he said. “To relive my life.”</p>
+            <p>She simply blinked, as if ready to trade an entire kingdom for a single drop of healing. Tightening her
+                grip around his palm with a new sense of hope, she led him back into the broken house.</p>
+            <p>The rest of the day vanished into sweeping, clearing, throwing out old “residents” from corners, and
+                coughing through clouds of dust that rose with every movement. Little by little, the dead house began to
+                feel alive again.</p>
+            <p>That evening, they sat side by side on the edge of the hill slope, watching the reddish sun sink into a
+                painted sky. Suzume finally asked, “What happened?”</p>
+            <p>Ivanka stared at the sky as his heart prepared to unlock a buried secret. “There was a tragic day,” he
+                began. “We defeated our mighty enemy, and on the way back to the palace I saw a girl crying in front of
+                her house. She wept in deep grief, uncaring of anyone’s judgment. Her eyes were swollen, her hair
+                uncombed, and tears had dried in thick coatings on her cheeks. In between sobs, she whispered a name
+                over and over. Her faint green dress no longer cared about the dirt from the floor. When I asked a man
+                nearby, he told me her lover had been part of the enemy brigade and had died on the battlefield. She was
+                shattered.”</p>
+            <p>He took a deep breath. “I don’t know why, but I felt like I was her culprit. I had cut down every enemy
+                in my path.”</p>
+            <p>Suzume squeezed his hand to steady him. “You haven’t done anything wrong,” she said. “You are a warrior.
+                A warrior lives for his king and for the people of the kingdom. Whatever you did, you did as your duty.”
+            </p>
+            <p>He replied quietly, “I saw you in her place.”</p>
+            <p>She tightened her grip on his hand. “I will never cry for your sacrifice,” she said. “I will be the one
+                who feels honoured that I loved a true warrior.”</p>
+            <p>He smiled and asked, “How did you know I came back?”</p>
+            <p>“I have spies all over the Shuka dynasty,” she answered, winking playfully.</p>
+            <p>“Hey, Suzume, I am no longer a warrior. Even then, you still love me?” he asked.</p>
+            <p>She said, “I like it when you stay here with me, but I would love it even more if you make the right
+                choices and save other lives. True love is never chained by selfishness.”</p>
+            <p>“Should I return?” he asked.</p>
+            <p>“Only if the decision comes from deep within,” she replied. They both smiled and gazed at the mesmerizing
+                sky as a gentle breeze wrapped them in a quiet, romantic calm. Birds drifted back toward their nests.
+            </p>
+            <p>One morning, Ivanka realized he was living the same day over and over, and every tomorrow would look
+                exactly like today. The mornings were beautiful, but the warrior in him missed the thrill of dangerous
+                sunrises. Boredom gnawed at him by day, and the nights felt hollow between the stars. He understood that
+                he no longer belonged to an ordinary life. At last, he decided to return to the battlefield.</p>
+            <p>While he was packing his things, Suzume walked into the room. She saw the bundle and froze near the
+                doorway like a statue. Without turning, he said, “Suzume, I’ve decided to go back to my real place. My
+                vacation is over now...” He kept talking, but she remained silent, staring at him as if the world around
+                her had turned to fog.</p>
+            <p>After a moment, he stood in front of her and pulled her into a tight embrace. Her tears burst free,
+                flowing down her face as she wrapped her arms around him. He felt her trembling sobs but didn’t say a
+                word. For them, time stopped, as if the earth had forgotten to rotate.</p>
+            <p>In a hoarse voice she said, “Whatever happens, you will come back to me. Promise me.” He kissed her
+                forehead and answered, “I promise.”</p>
+            <p>“I will wait for you,” she whispered. He murmured “yes” and closed his eyes.</p>
+            <p>Ivanka opened his eyes again and found himself in the soldiers’ medical tent. His arms were wrapped in
+                thick bandages soaked with herbs, and a heavy cotton cloth was tied around his chest. A sharp smell of
+                medicines filled the air.</p>
+            <p>A man entered and said, “Hello, warrior.” Ivanka turned his head. It was his senior officer. Ivanka gave
+                him a tired smile and, with great effort, spoke only two words: “Promise kept...”</p>
+        </article>
+
+        <div class="story-back-fixed">
+            <a href="../story.html">← Back to Stories</a>
+        </div>
+
+    </main>
+</body>
+
+</html>

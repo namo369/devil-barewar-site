@@ -1,0 +1,23 @@
+[
+    {
+        "title": "एक याद थी उसकी...",
+        "url": "story/ekyad.html",
+        "date": "November 27, 2025",
+        "excerpt": "सुना है तेरे गली में तेरे नाम की गूंज रहती है, जैसे काशी के घट पर भक्ति की चौपाल रहती है।",
+        "image": "story/images/ekyad.jpg"
+    },
+    {
+        "title": "बरसात‑ए‑मोहब्बत",
+        "url": "story/barsat.html",
+        "date": "November 27, 2025",
+        "excerpt": "वही जगह, वही बारिश, लेकिन इस बार बरसात खुद एक याद बन जाती है।",
+        "image": "story/images/barsat.jpg"
+    },
+    {
+        "title": "My quotes on humanity & honesty",
+        "url": "dairies/thoughts.html",
+        "date": "November 26, 2025",
+        "excerpt": "नोट्स – इंसानियत, जागरूकता और सच्चाई पर।",
+        "image": "dairies/images/Quote.jpg"
+    }
+]

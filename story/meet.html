@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>A Pleasant Meet — Story</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), rgba(32, 16, 8, 0.28)),
+                linear-gradient(135deg, #241923, #3c2837 40%, #523344);
+            color: #fdf7f0;
+        }
+
+        .story-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .story-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .story-kicker {
+            font-size: .8rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #d4b0cf;
+        }
+
+        .story-title {
+            margin: 0;
+            font-family: Georgia, "Noto Serif", serif;
+            font-size: 30px;
+            color: #ffe8dc;
+        }
+
+        .story-sub {
+            font-size: .9rem;
+            color: #ead3e7;
+        }
+
+        .story-hero {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 0 auto 22px;
+            /* center */
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            width: 80%;
+            /* smaller than page width */
+            max-width: 900px;
+            /* optional cap */
+        }
+
+        .story-hero img {
+            display: block;
+            width: 100%;
+            /* fit inside smaller block */
+            height: auto;
+            /* keep aspect ratio */
+            object-fit: contain;
+            filter: saturate(1.05) contrast(1.03);
+        }
+
+
+
+
+        .story-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(130deg, rgba(255, 255, 255, 0.18) 0, transparent 40%),
+                radial-gradient(circle at bottom, rgba(0, 0, 0, 0.45), transparent 60%);
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+
+        .story-body {
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.10), rgba(24, 10, 18, 0.98));
+            border-radius: 16px;
+            padding: 18px 18px 22px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #f7f1ea;
+        }
+
+        .story-body p {
+            margin: 0 0 1rem;
+            text-align: justify;
+        }
+
+        .story-back-fixed {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            font-size: .9rem;
+            z-index: 20;
+        }
+
+        .story-back-fixed a {
+            color: #ffc98a;
+            text-decoration: none;
+        }
+
+        .story-back-fixed a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .story-shell {
+                padding-inline: 14px;
+            }
+
+            .story-title {
+                font-size: 24px;
+            }
+
+            .story-hero img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="story-shell">
+
+        <header class="story-header">
+            <div class="story-header-left">
+                <div class="story-kicker">Short story · Romance · Monsoon</div>
+                <h1 class="story-title">A Pleasant Meet</h1>
+                <p class="story-sub">A missed train, a rainy Pune night, and an unexpected reunion that stirs old hearts
+                    again.</p>
+            </div>
+        </header>
+
+        <figure class="story-hero">
+            <img src="images/meet.jpg" alt="A Pleasant Meet — rainy night at station">
+        </figure>
+
+        <article class="story-body">
+            <p>Sometimes unfortunates are God’s fortunate miracles. The monsoon days had just begun, the season of
+                romance and love. These moments become even more auspicious when you live in the city of Pune, and for
+                me, that night was especially unforgettable. It was a dark, rainy night. I was late from college and the
+                clock was about to strike nine. I opened my black umbrella and started walking toward Shivajinagar
+                railway station.</p>
+            <p>Somehow, I reached the station. When I went to the ticket counter, it was already closed. Just then, I
+                saw my train pull in on the opposite platform. Heart racing, I ran toward it. The train gave a horn to
+                move, my heartbeat began to pound, and by the time I reached the other side, the train had picked up
+                speed. I could not step inside. I missed it by a second.</p>
+            <p>I asked the man standing behind me about the next train. He told me there would be no other train that
+                night. Because of the rain, all other trains were cancelled and the one I had just missed was the last
+                till Talegaon. My mood sank even lower.</p>
+            <p>I sat on a nearby bench and looked at my clothes. They were splashed with mud. I went to the bathroom to
+                clean them and then came back to the bench, wondering what to do next. That was when I noticed a woman
+                standing in the corner with a black purse and a large blue trolley. I glanced at her face and froze. It
+                was Neha Kolli. She looked worried about something. Old memories rushed back to me all at once.</p>
+            <p>Pretending not to have seen her, I started looking around aimlessly. She walked over and sat on the bench
+                next to me. I tried to hide my face, but my behaviour only made me look more foolish. Eventually, I
+                stood up and began walking toward the station exit. I wanted to talk to her, but three years earlier she
+                had broken up with me for no real reason and walked out of my life. Back then, my ego would not allow me
+                to welcome her back.</p>
+            <p>The rain started again. Suddenly, I sensed someone standing beside me. I turned, and there she was —
+                Neha. I signalled to a taxi driver, and he pulled up in front of us. I asked him to take me to the bus
+                station. He nodded, and I got into the back seat.</p>
+            <p>As the driver started the taxi, I asked him to call that lady. Obeying, he shouted to Neha. At first she
+                resisted, but finally she came over. She put her trolley in the boot and sat beside me in the back seat.
+            </p>
+            <p>Every moment in that taxi made me feel more restless. I tried hard to control my emotions. At last, we
+                reached the bus station. I went to the enquiry counter, but no one was there, so I returned. Neha was
+                sitting, talking on the phone. I stepped outside, trying to hide my feelings by staring at the rain.</p>
+            <p>Then I heard my name. I turned and saw Neha standing behind me. Her beautiful face was right in front of
+                mine. She looked as if she wanted to ask something, even though her lips remained closed. I found myself
+                lost in her deep eyes. After a pause, she finally spoke. “How are you, Siddharth?”</p>
+            <p>“Yes, absolutely fine,” I replied, and then asked, “How is your life going on?”</p>
+            <p>Still gazing into my eyes, she answered softly, “Same as others.”</p>
+            <p>I tried to keep my tone casual. “How is your husband? Is he a rich man?”</p>
+            <p>“He is the best husband,” she said. “He cares for me, and he has a rich heart.”</p>
+            <p>“But your eyes are saying something else,” I continued. “If he really cared, he wouldn’t send you all
+                alone like this.”</p>
+            <p>“He had a business meeting, that’s why I came alone,” she said. “And you are saying something too. Your
+                eyes are saying one thing and your tongue something else.”</p>
+            <p>“Leave it. Talk about something else,” I muttered, not wanting to expose my feelings.</p>
+            <p>She asked quietly, “Did you miss me?” The moment I heard that question, my eyes grew heavy and tears
+                slipped out. She said, “Please don’t miss me so much that I can’t forgive myself.” I could feel the
+                weight in her voice. Everything around us seemed to fall silent. The breeze stopped along with the
+                rumbling thunder. It felt like only two things were alive in that moment — her and me.</p>
+            <p>“Why did you leave me?” I finally asked. “Today I am a professor at the university. I have a reputation,
+                I have everything — except you.” At last, my heart began to speak.</p>
+            <p>“I was helpless,” she replied. “Sometimes our destiny transforms everything — our dreams, our
+                imagination. But my love was true.” Tears of emotion began to roll down her cheeks. The atmosphere felt
+                so real and intense that it became one of the best moments of my life. No words were needed; the silence
+                itself was loud enough.</p>
+            <p>Just then, the bus arrived. I took her trolley and we both got on. She chose the window seat, and I sat
+                beside her. Our journey to Talegaon began. We both remained silent the entire way, lost in our own
+                thoughts, not caring about anything or anyone else. It was the most peaceful moment I had ever
+                experienced.</p>
+            <p>After an hour, we reached our destination and stepped off the bus.</p>
+            <p>“Is somebody coming to receive you?” I asked.</p>
+            <p>“Yes, my dad is coming,” she replied.</p>
+            <p>“So how many days are you here?” I asked casually.</p>
+            <p>“For two days. Mom’s health is critical, so I came to see her. And Siddharth can’t live without me for
+                more than two days, so I have to return home quickly.”</p>
+            <p>“Who Siddharth?” I asked in surprise.</p>
+            <p>“My son Siddharth,” she smiled. Just then, her father arrived with the car. She picked up her trolley and
+                said, “See you soon. Take care.” Then she left with them.</p>
+            <p>I stood there, watching her go. And I could only watch...</p>
+        </article>
+
+        <div class="story-back-fixed">
+            <a href="../story.html">← Back to Stories</a>
+        </div>
+
+    </main>
+</body>
+
+</html>
