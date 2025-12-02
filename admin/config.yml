@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: namo369/devil-barewar-site   # your GitHub repo
+  branch: main
+
+media_folder: "poems/images"        # where uploaded images are stored in repo
+public_folder: "/poems/images"      # how the site accesses those images
+
+collections:
+  - name: "poems"
+    label: "Poems"
+    folder: "content/poems"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug",  label: "Slug", widget: "string", hint: "URL part, e.g. jesus-my-lord" }
+      - { name: "language", label: "Language", widget: "select", options: ["Hindi", "English", "Braj", "Urdu"] }
+      - { name: "description", label: "Short Description", widget: "text" }
+      - { name: "thumbnail", label: "Thumbnail Image", widget: "image" }
+      - { name: "body", label: "Poem Body", widget: "markdown" }
