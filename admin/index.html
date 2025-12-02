@@ -2,16 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Devil Barewar – Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Decap (Netlify) CMS from CDN -->
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
-    <!-- CMS mounts itself here -->
+    <!-- Root element for CMS -->
+    <div id="cms"></div>
+
+    <!-- Load Decap (Netlify) CMS -->
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+
+    <script>
+        // Ensure CMS mounts after the DOM is ready
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.CMS) {
+                window.CMS.init();
+            }
+        });
+    </script>
 </body>
 
 </html>
