@@ -1091,3 +1091,26 @@ a.btn:focus {
         font-size: 0.9rem;
     }
 }
+
+/* Make newsletter labels match other footer text */
+.footer-col .footer-label,
+.footer-col label {
+    display: block;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* same as rest of site */
+    font-size: 0.95rem;
+    /* adjust to match visually */
+    font-weight: 600;
+    /* or 500, same as Quick Links / Contact Us titles if you prefer */
+    color: #4b2f1a;
+    /* use the same color as other footer text */
+    margin-bottom: 0.35rem;
+}
+
+/* Inputs already look fine, but ensure they use same font */
+.footer-col .footer-input,
+.footer-col input[type="email"],
+.footer-col input[type="text"] {
+    font-family: inherit;
+    font-size: 0.95rem;
+}

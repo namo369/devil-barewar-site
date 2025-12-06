@@ -8,13 +8,16 @@
 </div>
 
 
+
 <!-- ===========================
      FOOTER (FINAL) - footer.html
 =========================== -->
 
+
 <footer class="site-footer" role="contentinfo">
     <div class="footer-main"> <!-- full-width background -->
         <div class="footer-container"> <!-- center-aligned inner container -->
+
 
             <!-- Column 1 -->
             <div class="footer-col footer-brand-col">
@@ -24,6 +27,7 @@
                 </div>
                 <p class="footer-text small muted">Author | Storyteller | Poet</p>
             </div>
+
 
             <!-- Column 2 -->
             <div class="footer-col">
@@ -38,15 +42,18 @@
                 </nav>
             </div>
 
+
             <!-- Column 3 -->
             <div class="footer-col">
                 <h4>Contact Us</h4>
                 <div class="footer-line"></div>
                 <p><strong>Email:</strong> <a href="mailto:hrivalcreation@gmail.com">devilbarewar@zohomail.in</a></p>
 
+
                 <!-- "Follow" label above icons -->
                 <p style="margin-top:1rem;"><strong>Follow</strong></p>
                 <div class="footer-line thin"></div>
+
 
                 <div class="social-icons" aria-label="Follow on social">
                     <!-- **Important:** path is relative to project root: assets/images/<name>.png -->
@@ -76,23 +83,35 @@
                     </a>
                 </div>
 
+
             </div>
+
 
             <!-- Column 4 -->
             <div class="footer-col">
                 <h4>Stay Updated</h4>
                 <div class="footer-line"></div>
 
-                <!-- Newsletter form: name -> email -> subscribe stacked vertically -->
-                <!-- REMOVED: onsubmit="return false;" so JS can handle submit -->
-                <form id="footer-newsform" class="footer-news">
-                    <label for="footer-name" class="visually-hidden">Name</label>
-                    <input id="footer-name" name="name" type="text" placeholder="Your name" />
+                <!-- Same UI, now posting to MailerLite -->
+                <form id="footer-newsform" class="footer-news"
+                    action="https://assets.mailerlite.com/jsonp/1966566/forms/173016040560657892/subscribe"
+                    method="post" target="_blank">
 
-                    <label for="footer-email" class="visually-hidden">Email</label>
-                    <input id="footer-email" name="email" type="email" placeholder="Enter your email" />
+                    <label class="footer-label" for="footer-email">Email Address *</label>
+                    <input type="email" id="footer-email" name="fields[email]" class="footer-input"
+                        placeholder="Enter your email" required>
 
-                    <button id="footer-subscribe" class="btn" type="submit">Subscribe</button>
+                    <label class="footer-label" for="footer-name">Full Name</label>
+                    <input type="text" id="footer-name" name="fields[name]" class="footer-input"
+                        placeholder="Your name">
+
+                    <!-- MailerLite required hidden fields -->
+                    <input type="hidden" name="ml-submit" value="1">
+                    <input type="hidden" name="anticsrf" value="true">
+
+                    <button type="submit" class="footer-btn">
+                        Subscribe
+                    </button>
                 </form>
 
                 <p class="small muted" style="margin-top:.6rem;">
@@ -101,33 +120,38 @@
                 </p>
             </div>
 
+
         </div> <!-- /.footer-container -->
     </div> <!-- /.footer-main -->
+
 
     <!-- ============ FOOTER BOTTOM (FIXED & CENTERED) ============ -->
     <div class="footer-bottom">
         <div class="footer-bottom-inner">
 
+
             <p class="footer-copy">© Devil Barewar. All Rights Reserved.</p>
+
 
             <p class="footer-made">
                 Made with <span style="color:#e63946; font-size:1.2rem;">❤️</span> by Devil Barewar
             </p>
 
+
         </div>
     </div>
+
 
     <!-- Font Awesome (kept, optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Apps Script binder: REPLACE ENDPOINT below with your deploy URL (you already deployed and have it) -->
+
+    <!-- Apps Script binder: unchanged -->
     <script>
         (function () {
             'use strict';
 
-            // <-- REPLACE with your web app URL (from Apps Script deploy) -->
             const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwzHZJb35NbY1JqVXFLcpq5ZKPgOHqlyJ3_-jnPfniCJ515CH9VYbcQFx8qM3Cl0v9C/exec';
-            // Optional token — if your Apps Script checks it, set it; otherwise leave empty string.
             const TOKEN = '';
 
             function bindSignup(formId, nameId, emailId, sourceLabel) {
@@ -164,7 +188,6 @@
                         .then(r => r.json())
                         .then(data => {
                             if (data && (data.success || data.result === 'ok')) {
-                                // success UX
                                 if (nameEl) nameEl.value = '';
                                 if (emailEl) emailEl.value = '';
                                 const msg = document.createElement('div');
@@ -188,6 +211,12 @@
             bindSignup('footer-newsform', 'footer-name', 'footer-email', 'footer');
 
         })();
+    </script>
+
+    <!-- MailerLite webforms script for automation -->
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/1966566/forms/173016040560657892/takel");
     </script>
 
 </footer>

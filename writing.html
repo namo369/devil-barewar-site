@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Writing Journey – Devil Barewar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #fbe7d3 0, #f2edea 45%, #e7dbcf 100%);
+        }
+
+        main.journey-main {
+            min-height: 100vh;
+        }
+
+        .journey-shell {
+            max-width: 1024px;
+            margin: 2.5rem auto 3.5rem;
+            padding: 0 1.25rem;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
+
+        .journey-kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.78rem;
+            color: rgba(90, 52, 16, 0.7);
+            font-weight: 700;
+        }
+
+        .journey-title {
+            font-size: 2.1rem;
+            margin: 0.35rem 0;
+            color: var(--espresso, #5A3410);
+        }
+
+        .journey-sub {
+            margin: 0.35rem 0 0;
+            color: var(--muted, #6A6158);
+            font-size: 0.98rem;
+        }
+
+        .journey-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        /* Left: editor */
+        .journey-editor {
+            background: rgba(255, 249, 242, 0.96);
+            border-radius: 18px;
+            padding: 1.5rem 1.7rem 1.8rem;
+            box-shadow: 0 22px 50px rgba(59, 32, 17, 0.22);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-editor::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to bottom right,
+                    rgba(255, 216, 173, 0.38),
+                    transparent 55%);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+        }
+
+        .journey-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(165, 107, 42, 0.08);
+            color: var(--espresso, #5A3410);
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-tab-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ff8a5c;
+        }
+
+        .journey-title-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--espresso, #5A3410);
+            margin-bottom: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-meta-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            font-size: 0.78rem;
+            color: var(--muted, #6A6158);
+            margin-bottom: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-meta-pill {
+            padding: 0.15rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(90, 52, 16, 0.06);
+        }
+
+        .journey-textarea {
+            width: 100%;
+            min-height: 260px;
+            resize: vertical;
+            border-radius: 12px;
+            border: 1px dashed rgba(59, 32, 17, 0.18);
+            padding: 0.9rem 1rem;
+            font: inherit;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.94);
+            outline: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-textarea::placeholder {
+            color: rgba(106, 97, 88, 0.75);
+        }
+
+        .journey-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.85rem;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-buttons {
+            display: flex;
+            gap: 0.55rem;
+        }
+
+        .journey-btn {
+            border-radius: 999px;
+            padding: 0.4rem 0.9rem;
+            border: 0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .journey-btn.primary {
+            background: var(--latte, #A56B2A);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(165, 107, 42, 0.35);
+        }
+
+        .journey-btn.ghost {
+            background: rgba(255, 249, 242, 0.9);
+            color: var(--espresso, #5A3410);
+            border: 1px solid rgba(59, 32, 17, 0.12);
+        }
+
+        .journey-word-count {
+            color: rgba(106, 97, 88, 0.9);
+        }
+
+        /* Right: journey card + prompts */
+        .journey-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .story-card-main {
+            background: #3b2011;
+            color: #fff;
+            border-radius: 18px;
+            padding: 1.4rem 1.5rem 1.7rem;
+            box-shadow: 0 20px 44px rgba(59, 32, 17, 0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card-main::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at top left, rgba(255, 205, 160, 0.7), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(251, 140, 80, 0.7), transparent 60%);
+            opacity: 0.75;
+            mix-blend-mode: screen;
+        }
+
+        .story-card-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-size: 0.72rem;
+            opacity: 0.9;
+        }
+
+        .story-title {
+            margin: 0.5rem 0 0.25rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .story-snippet {
+            margin: 0.2rem 0 0.9rem;
+            font-size: 0.9rem;
+            opacity: 0.92;
+        }
+
+        .journey-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            border: 0;
+            background: rgba(18, 13, 7, 0.9);
+            color: #ffeede;
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 24px rgba(15, 10, 6, 0.75);
+        }
+
+        .journey-link-btn span.icon {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: #ffb27a;
+            color: #3b2011;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .side-card {
+            background: rgba(255, 249, 242, 0.96);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            box-shadow: 0 14px 34px rgba(59, 32, 17, 0.18);
+        }
+
+        .side-card h3 {
+            margin: 0 0 0.35rem;
+            font-size: 0.98rem;
+            color: var(--espresso, #5A3410);
+        }
+
+        .side-card p {
+            margin: 0.15rem 0;
+            font-size: 0.85rem;
+            color: var(--muted, #6A6158);
+        }
+
+        @media (max-width: 880px) {
+            .journey-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-shell {
+                margin-top: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (unchanged) -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/" aria-label="Devil Barewar - Home">Devil Barewar</a>
+
+            <div class="right-controls" role="navigation" aria-label="Main navigation">
+                <form id="site-search" class="site-search" role="search" action="../search.html" method="get"
+                    aria-label="Search site">
+                    <label for="q" class="visually-hidden">Search</label>
+                    <input id="q" name="q" type="search" placeholder="Search essays, books..." aria-label="Search" />
+                    <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+                </form>
+
+                <button id="menu-toggle" class="nav-toggle" aria-label="Open menu" aria-haspopup="true"
+                    aria-controls="bottom-menu" aria-expanded="false">
+                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="journey-main">
+        <section class="journey-shell">
+            <header class="journey-header">
+                <div class="journey-kicker">Writing Journey</div>
+                <h1 class="journey-title">Pour your story onto the page</h1>
+                <p class="journey-sub">
+                    A quiet corner for drafts, memories, half‑lines and brave first sentences. Nothing has to be
+                    perfect here.
+                </p>
+            </header>
+
+            <div class="journey-layout">
+
+                <!-- Right: card linking to your own journey -->
+                <aside class="journey-side">
+                    <div class="story-card-main">
+                        <div class="story-card-inner">
+                            <div class="story-tag">Featured journey</div>
+                            <h2 class="story-title">My Journey to Co‑author</h2>
+                            <p class="story-snippet">
+                                From casual shayari and college notice boards to more than fifty published
+                                anthologies under the name “Devil Barewar”.
+                            </p>
+
+                            <!-- Creative button to go to your journey page -->
+                            <a href="writing/journey.html" class="journey-link-btn">
+                                <span class="icon">✦</span>
+                                <span>Read this journey</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="side-card">
+                        <h3>Need a starting line?</h3>
+                        <p>Write about the first time words felt like home, not homework.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+    </script>
+    <script src="../assets/js/footer-links.js"></script>
+
+    <!-- Word count helper -->
+    <script>
+        const area = document.querySelector(".journey-textarea");
+        const wc = document.getElementById("wordCount");
+
+        if (area && wc) {
+            area.addEventListener("input", () => {
+                const text = area.value.trim();
+                const words = text ? text.split(/\s+/).length : 0;
+                wc.textContent = words + (words === 1 ? " word" : " words");
+            });
+        }
+    </script>
+</body>
+
+</html>

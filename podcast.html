@@ -269,24 +269,32 @@
 
 <body>
 
-    <!-- Header reuse -->
+    <!-- Header: brand + visible search + hamburger -->
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html">Devil Barewar</a>
-            <nav class="main-nav" aria-label="Main navigation">
-                <a href="index.html">Home</a>
-                <a href="books.html">Books</a>
-                <a href="stories.html">Stories</a>
-                <a href="poems.html">Poems</a>
-                <a href="about.html">About</a>
-            </nav>
-            <div class="right-controls">
-                <button class="nav-toggle" aria-label="Menu">
-                    <span class="hamburger"><span></span><span></span><span></span></span>
+            <!-- Left: Brand -->
+            <a class="brand" href="/" aria-label="Devil Barewar - Home">Devil Barewar</a>
+
+            <!-- Right controls: search + hamburger -->
+            <div class="right-controls" role="navigation" aria-label="Main navigation">
+                <!-- Visible Search -->
+                <form id="site-search" class="site-search" role="search" action="search.html" method="get"
+                    aria-label="Search site">
+                    <label for="q" class="visually-hidden">Search</label>
+                    <input id="q" name="q" type="search" placeholder="Search essays, books..." aria-label="Search" />
+                    <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+                </form>
+
+
+                <!-- Hamburger only -->
+                <button id="menu-toggle" class="nav-toggle" aria-label="Open menu" aria-haspopup="true"
+                    aria-controls="bottom-menu" aria-expanded="false">
+                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
                 </button>
             </div>
         </div>
     </header>
+
 
     <!-- Hero -->
     <section class="pod-hero">

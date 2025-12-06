@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Journey to Co‑author – Devil Barewar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #fbe7d3 0, #f2edea 45%, #e7dbcf 100%);
+        }
+
+        main.journey-page {
+            min-height: 100vh;
+        }
+
+        .journey-wrapper {
+            max-width: 880px;
+            margin: 2.5rem auto 3.5rem;
+            padding: 0 1.25rem;
+        }
+
+        .journey-heading-block {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .journey-kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.78rem;
+            color: rgba(90, 52, 16, 0.7);
+            font-weight: 700;
+        }
+
+        .journey-title {
+            margin: 0.4rem 0;
+            font-size: 2.2rem;
+            color: var(--espresso, #5A3410);
+        }
+
+        .journey-subtitle {
+            margin: 0.2rem 0 0;
+            color: var(--muted, #6A6158);
+            font-size: 0.98rem;
+        }
+
+        .journey-card {
+            position: relative;
+            background: rgba(255, 249, 242, 0.96);
+            border-radius: 18px;
+            padding: 1.7rem 1.8rem 2rem;
+            box-shadow: 0 24px 60px rgba(59, 32, 17, 0.22);
+            overflow: hidden;
+        }
+
+        .journey-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at top left, rgba(255, 183, 135, 0.35), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(165, 107, 42, 0.16), transparent 55%);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+        }
+
+        .journey-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: rgba(106, 97, 88, 0.9);
+        }
+
+        .journey-meta-pill {
+            padding: 0.18rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(59, 32, 17, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .journey-body {
+            position: relative;
+            z-index: 1;
+            column-count: 1;
+            column-gap: 2rem;
+        }
+
+        .journey-body p {
+            margin: 0 0 1rem;
+            color: var(--chocolate, #3B2011);
+            font-size: 0.98rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .journey-dropcap:first-letter {
+            float: left;
+            font-size: 3rem;
+            line-height: 0.9;
+            padding-right: 0.22rem;
+            padding-top: 0.12rem;
+            font-weight: 800;
+            color: var(--latte, #A56B2A);
+        }
+
+        .journey-footer-note {
+            margin-top: 1.4rem;
+            font-size: 0.86rem;
+            color: rgba(106, 97, 88, 0.95);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .journey-tagline {
+            font-weight: 600;
+            color: var(--espresso, #5A3410);
+        }
+
+        @media (min-width: 980px) {
+            .journey-body {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .journey-wrapper {
+                margin-top: 1.6rem;
+            }
+
+            .journey-card {
+                padding: 1.4rem 1.3rem 1.7rem;
+            }
+        }
+
+        .story-back-fixed {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            z-index: 40;
+        }
+
+        .story-back-fixed a {
+            font-size: 1rem;
+            color: #d88706;
+            /* warm yellow like your screenshot */
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        .story-back-fixed a:hover {
+            text-decoration: underline;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="journey-page">
+        <section class="journey-wrapper">
+            <header class="journey-heading-block">
+                <div class="journey-kicker">Writing Journey</div>
+                <h1 class="journey-title">My Journey to Co‑author</h1>
+                <p class="journey-subtitle">
+                    How casual shayari turned into more than fifty published anthologies.
+                </p>
+            </header>
+
+            <article class="journey-card">
+                <div class="journey-meta-row">
+                    <span class="journey-meta-pill">Pen name: Devil Barewar</span>
+                    <span class="journey-meta-pill">Genres: Hindi · English · Urdu · Marathi · Sanskrit</span>
+                    <span class="journey-meta-pill">Role: Co‑author, 50+ anthologies</span>
+                </div>
+
+                <div class="journey-body">
+                    <p class="journey-dropcap">
+                        There was a time when I scribbled poems and shayari just to impress girls and be different among
+                        friends with the entitlement of “Shayar”. Honestly, I was naive about my unique skill. In
+                        school, I recited my poems on stage and, by receiving applause from students and teachers, I
+                        fulfilled my ego without doubt. In those days, I was quite popular among girls, and that was
+                        enough for me. Steadily, I passed out of school as well as junior college, carrying only a vague
+                        vision of becoming a published author, with no clear plan or source to make it real.
+                    </p>
+
+                    <p>
+                        At the beginning of my graduation, my Hindi professor, Dr. Prerna Ubale ma’am, asked me to write
+                        a proper poem for the notice board and the college magazine. That is when I truly began to learn
+                        what poetry is. It became a turning point for my writing. I discovered new writers, new genres
+                        of poetry, different kinds of literature, and much more. Slowly, a new world of writing opened
+                        in front of me, each layer like a new realm to explore. I finally wrote a Hindi poem about
+                        friendship, “Yaara teri dosti…”, and from there I started exploring literature in English, Urdu,
+                        Sanskrit, Hindi and Marathi.
+                    </p>
+
+                    <p>
+                        During my final year of Bachelor of Arts, I began posting my poems on Instagram. One day, a
+                        message arrived from a stranger named Chandana Kashipuram. It was her first anthology as a
+                        compiler, and she invited me to write on “mother’s love”. With a full heart, I accepted and
+                        wrote an English poem titled “First Meet”. It was my first ever English poem, a couplet‑style
+                        piece that began with the lines about an ocean of love and a seashore of care.
+                    </p>
+
+                    <p>
+                        That anthology became my first published work under the pen name “Devil Barewar”, a name I still
+                        use for every piece of literature. Since then, the journey has grown far beyond that first
+                        invitation. Today, I stand as a co‑author of more than fifty published anthologies, each one a
+                        reminder that a casual shayari phase once quietly turned into a lifelong relationship with
+                        writing.
+                    </p>
+                </div>
+
+                <div class="journey-footer-note">
+                    <span class="journey-tagline">From classroom notice boards to global anthologies.</span>
+                    <span>Some journeys begin with a single line whispered to an empty page.</span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div class="story-back-fixed">
+        <a href="../writing.html">← Back to Stories</a>
+    </div>
+</body>
+
+</html>
