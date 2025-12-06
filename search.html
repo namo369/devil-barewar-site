@@ -13,14 +13,100 @@
         const params = new URLSearchParams(location.search);
         const q = (params.get('q') || '').toLowerCase().trim();
 
-        // Map of keywords → URL (target page + optional #anchor)
         const routes = [
+            // Poems
             {
-                keywords: ['seashore eve', 'seashore', 'sea shore', ''],
+                keywords: ['seashore eve', 'seashore', 'sea shore', 'समंदर', 'beach poem'],
                 url: 'poems.html#seashore-eve'
             },
             {
-                keywords: ['barsat', 'barsat-e-mohabbat', 'एक याद थी उसकी...', 'एक याद', 'बरसात‑ए‑मोहब्बत', 'बरसात', 'Promise Kept...', 'Promise', 'A Pleasant Meet', 'Pleasant'],
+                keywords: ['woh waqt ho chala', 'वो वक़्त हो चला', 'wo waqt ho chala', 'time poem'],
+                url: 'poems.html#woh-waqt-ho-chala'
+            },
+            {
+                keywords: ['sitaron ka aalam', 'सितारों का आलम', 'stars poem'],
+                url: 'poems.html#sitaron-ka-aalam'
+            },
+            {
+                keywords: ['tum hausla rakhna', 'तुम हौसला रखना', 'motivation poem'],
+                url: 'poems.html#tum-hausla-rakhna'
+            },
+            {
+                keywords: ['someone special', 'love poem', 'समवन स्पेशल'],
+                url: 'poems.html#someone-special'
+            },
+            {
+                keywords: ['first meet', 'mother poem', 'maa poem', 'mother love'],
+                url: 'poems.html#first-meet'
+            },
+            {
+                keywords: ['jesus my lord', 'jesus poem'],
+                url: 'poems.html#jesus-my-lord'
+            },
+            {
+                keywords: ['mero sawariya', 'मे रो सावरिया', 'kanha poem', 'radha krishna'],
+                url: 'poems.html#mero-sawariya'
+            },
+
+            // Stories / journeys / diaries
+            {
+                keywords: ['my journey to co-author', 'co-author journey', 'writing journey'],
+                url: 'writing.html#journey-to-coauthor'
+            },
+            {
+                keywords: ['my quotes on humanity', 'quotes on honesty', 'humanity quotes'],
+                url: 'diaries.html#humanity-honesty'
+            },
+            {
+                keywords: ['my journey to co-author story', 'coauthor diary', 'shayari to co-author'],
+                url: 'diaries.html#journey-to-coauthor'
+            },
+
+            // Short films
+            {
+                keywords: ['horror garden part 1', 'horror garden 1'],
+                url: 'shortfilms.html#horror-garden-1'
+            },
+            {
+                keywords: ['horror garden part 2', 'horror garden 2'],
+                url: 'shortfilms.html#horror-garden-2'
+            },
+            {
+                keywords: ['horror garden part 3', 'horror garden 3'],
+                url: 'shortfilms.html#horror-garden-3'
+            },
+            {
+                keywords: ['love shayari in hindi', 'love shayari video'],
+                url: 'shortfilms.html#love-shayari'
+            },
+
+            // Screenplays
+            {
+                keywords: ['aakhri kulhad', 'आख़री कुल्हड़', 'kulhad short film'],
+                url: 'screenplay.html#aakhri-kulhad'
+            },
+            {
+                keywords: ['gumshuda kulhad', 'गुमशुदा कुल्हड़'],
+                url: 'screenplay.html#gumshuda-kulhad'
+            },
+            {
+                keywords: ['kulhad break', 'कुल्हड़ ब्रेक'],
+                url: 'screenplay.html#kulhad-break'
+            },
+            {
+                keywords: ['kulhad-si mulaqaat', 'कुल्हड़-सी मुलाक़ात'],
+                url: 'screenplay.html#kulhad-si-mulaqaat'
+            },
+
+            // Books
+            {
+                keywords: ['kuch ansune lifafey', 'कुछ अनसुने लिफ़ाफ़े', 'book', 'novel'],
+                url: 'books.html#kuch-ansune-lifafey'
+            },
+
+            // Existing story routes you already had
+            {
+                keywords: ['barsat', 'barsat-e-mohabbat', 'बरसात‑ए‑मोहब्बत', 'बरसात', 'pleasant meet', 'pleasant'],
                 url: 'story.html#barsat-e-mohabbat'
             },
             {
@@ -29,20 +115,17 @@
             }
         ];
 
-
-        // Find first route where any keyword is contained in q
         const hit = routes.find(route =>
-            route.keywords.some(k => q.includes(k))
+            route.keywords.some(k => k && q.includes(k.toLowerCase()))
         );
 
         if (hit) {
-            // Redirect to the right page
             window.location.href = hit.url;
         } else {
-            // Fallback: if nothing matched, go to home sticky section
             window.location.href = 'index.html#stickyHeading';
         }
     </script>
+
 
 </body>
 
