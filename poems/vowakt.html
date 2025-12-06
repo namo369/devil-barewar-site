@@ -163,6 +163,64 @@
                 font-size: 26px;
             }
         }
+
+        /* Mobile layout for poem pages */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+                align-items: stretch;
+                /* let content use full width */
+            }
+
+            .stage {
+                grid-template-columns: 1fr;
+                /* image on top, poem below */
+                gap: 18px;
+                max-width: 100%;
+            }
+
+            .left-col,
+            .right-col {
+                width: 100%;
+            }
+
+            .right-col {
+                padding: 18px 16px;
+                box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+            }
+
+            h1.title {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            .poem-panel {
+                font-size: 18px;
+                /* slightly smaller for small screens */
+                line-height: 1.8;
+                max-height: none;
+                /* let page scroll instead of inner box */
+                overflow: visible;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 8px;
+            }
+
+            .right-col {
+                padding: 16px 12px;
+            }
+
+            .poem-panel {
+                font-size: 17px;
+            }
+        }
     </style>
 </head>
 

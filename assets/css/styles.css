@@ -1114,3 +1114,153 @@ a.btn:focus {
     font-family: inherit;
     font-size: 0.95rem;
 }
+
+/* ============================
+   READING PAGES (poems, diaries, journeys, scripts)
+============================ */
+
+/* Generic reading column wrapper – adjust class names to your HTML */
+.reader,
+.poem-page,
+.diary-page,
+.journey-page,
+.script-page,
+.reading-column {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 1.5rem;
+}
+
+/* Mobile: use almost full width, larger text and good line-height */
+@media (max-width: 768px) {
+
+    .reader,
+    .poem-page,
+    .diary-page,
+    .journey-page,
+    .script-page,
+    .reading-column {
+        max-width: 100%;
+        padding-inline: 1.1rem;
+    }
+
+    .reader .poem-body,
+    .reader .poem-body .poem-line,
+    .poem-page p,
+    .diary-page p,
+    .journey-page p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* Screenplay text: wrap long lines and bump size slightly */
+    .script-page pre,
+    .script-page .script-text,
+    .script-page p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        /* allow wrapping on phones */
+        word-break: break-word;
+    }
+}
+
+/* Extra-small phones: a bit tighter padding */
+@media (max-width: 480px) {
+
+    .reader,
+    .poem-page,
+    .diary-page,
+    .journey-page,
+    .script-page,
+    .reading-column {
+        padding-inline: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .script-page pre,
+    .script-page .script-text {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        white-space: pre-wrap !important;
+        /* allow wrapping */
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+}
+
+/* ============================
+   READING PAGES (poems, diaries, journeys, scripts)
+   – desktop base
+============================ */
+
+.reader,
+.poem-page,
+.diary-page,
+.journey-page,
+.script-page,
+.reading-column {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 1.5rem;
+}
+
+/* ============================
+   MOBILE: make reading pages full‑width & readable
+============================ */
+
+@media (max-width: 768px) {
+
+    .reader,
+    .poem-page,
+    .diary-page,
+    .journey-page,
+    .script-page,
+    .reading-column {
+        max-width: 100%;
+        padding-inline: 1.1rem;
+    }
+
+    .reader .poem-body,
+    .reader .poem-body .poem-line,
+    .poem-page p,
+    .diary-page p,
+    .journey-page p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* Screenplays – wrap long lines and improve size */
+    .script-page pre,
+    .script-page .script-text {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        white-space: pre-wrap !important;
+        /* wrap instead of horizontal scroll */
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+}
+
+/* Extra-small phones – a bit tighter side padding */
+@media (max-width: 480px) {
+
+    .reader,
+    .poem-page,
+    .diary-page,
+    .journey-page,
+    .script-page,
+    .reading-column {
+        padding-inline: 0.85rem;
+    }
+}
+
+/* If you have a fixed-width script card, relax it on mobile */
+@media (max-width: 768px) {
+    .script-card {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
